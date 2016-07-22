@@ -1,0 +1,18 @@
+.aside{
+    height: 100vh;
+    background-color: rgba(0,0,0,.9);
+}
+
+.home{
+    background: url("http://spectruminformation.com/wp-content/uploads/2014/06/Dollarphotoclub_53028495-PD-biz-network-hadnshake.jpg");
+}
+
+.login{
+    background: url("http://rri.res.in/~inhouse/images/contact-back.jpg");
+}
+
+.background{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
