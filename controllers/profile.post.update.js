@@ -6,7 +6,7 @@ var express = require('express'),
     Education = require('../models/education.js'),
     Volunteer = require('../models/volunteer.js');
 
-router.post('/:id/updateUser', function(req, res){
+router.post('/updateUser', function(req, res){
     var data = req.body;
     User.find({_id:req.params.id}, function(err, user){
         user = user[0];
@@ -18,7 +18,7 @@ router.post('/:id/updateUser', function(req, res){
     });
 });
 
-router.post('/:id/updateEducation', function(req, res){
+router.post('/updateEducation', function(req, res){
     data = req.body; //remember to add hidden field to find education id
     Education.find({_id: data._id}, function(err, edu){
         var edu = edu[0];
@@ -32,7 +32,7 @@ router.post('/:id/updateEducation', function(req, res){
     });
 });
 
-router.post('/:id/updateExperience', function(req, res){
+router.post('/updateExperience', function(req, res){
     data = req.body; //remember to add hidden field to find experience id
     //  console.log(data);
     Experience.find({_id: data._id}, function(err, exp){
@@ -46,7 +46,7 @@ router.post('/:id/updateExperience', function(req, res){
     });
 });
 
-router.post('/:id/updateVolunteerExp', function(req, res){
+router.post('/updateVolunteerExp', function(req, res){
     data = req.body; //remember to add hidden field to find volunteer experience id
     Volunteer.find({_id: data._id}, function(err, vol){
         var vol = vol[0];

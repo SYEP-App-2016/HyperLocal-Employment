@@ -6,7 +6,7 @@ var express = require('express'),
     Volunteer = require('../models/volunteer.js');
 
 //Add/Remove Routes for User Experience
-router.post('/:id/addExperience', function(req, res){
+router.post('/addExperience', function(req, res){
     //res.send(dbFunctions.addExperience(req.body));
     //Remember to include ._id as an hidden field to get user_id
     var newExperience = new Experience({
@@ -21,7 +21,7 @@ router.post('/:id/addExperience', function(req, res){
     newExperience.save(function(err){if(err)throw err; console.log('User Experience Added.')});
     res.redirect('/' + newExperience.profile_id + '/Profile');
 });
-router.post('/:id/removeExperience', function(req, res){
+router.post('/removeExperience', function(req, res){
     Experience.find({_id: req.body.exp_id}, function(err, exp){
         if(err) throw err;
         console.log(exp);
@@ -35,7 +35,7 @@ router.post('/:id/removeExperience', function(req, res){
     res.redirect('/' + req.params.id + '/Profile');
 });
 //Add/Remove Routes for Education
-router.post('/:id/addEducation', function(req, res){
+router.post('/addEducation', function(req, res){
     // res.send(dbFunctions.addEducation(req.body));
     //Remember to include ._id as an hidden field to get user_id
     var newEducation = new Education({
@@ -49,7 +49,7 @@ router.post('/:id/addEducation', function(req, res){
     newEducation.save(function(err){if(err)throw err; console.log('User Education Added.')});
     res.redirect('/' + req.body.usr_id + '/Profile');
 });
-router.post('/:id/removeEducation', function(req, res){
+router.post('/removeEducation', function(req, res){
     Education.find({_id: req.body.edu_id}, function(err, edu){
         if(err) throw err;
         edu = edu[0];
@@ -61,7 +61,7 @@ router.post('/:id/removeEducation', function(req, res){
     res.redirect('/' + req.params.id + '/Profile');
 });
 //Add/Remove Routes for Volunteer Experience
-router.post('/:id/addVolunteerExp', function(req, res){
+router.post('/addVolunteerExp', function(req, res){
     // res.send(dbFunctions.addVolunteer(req.body));
     //Remember to include ._id as an hidden field to get user_id
     var newVolunteer = new Volunteer({
@@ -74,7 +74,7 @@ router.post('/:id/addVolunteerExp', function(req, res){
     newVolunteer.save(function(err){if(err)throw err; console.log('User Volunteer Added.')});
     res.redirect('/' + req.body.usr_id + '/Profile');
 });
-router.post('/:id/removeVolunteerExp', function(req, res){
+router.post('/removeVolunteerExp', function(req, res){
     Volunteer.find({_id: req.body.vol_id}, function(err, vol){
         if(err) throw err;
         vol = vol[0];

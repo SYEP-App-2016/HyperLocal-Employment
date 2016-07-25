@@ -52,10 +52,6 @@ passport.use('local-login',
 
             if(!account.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password.'))
 
-            User.findOne({'account_id': account._id}, function(err, user){
-                console.log()
-                    if(err) throw err;
-                    return done(null, user);
-            })
+            return done(null, account);
         });
     }));
