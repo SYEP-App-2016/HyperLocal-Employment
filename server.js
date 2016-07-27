@@ -13,7 +13,7 @@ var express = require('express'),
     localStrategies = require('passport-local').Strategy,
     fileUpload = require('express-fileupload');
 
-mongoose.connect(db.url, function(err){
+mongoose.connect(db.production.url, function(err){
     if(err) {console.log('Error Connection to: ' + db.production.url + '\n' + err)}
     else{console.log('Connection Successful')}
     //Database Drop
