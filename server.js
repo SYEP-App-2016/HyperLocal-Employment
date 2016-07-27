@@ -14,7 +14,7 @@ var express = require('express'),
     fileUpload = require('express-fileupload');
 
 mongoose.connect(db.url, function(err){
-    if(err) {console.log('Error Connection to: ' + db.url + '\n' + err)}
+    if(err) {console.log('Error Connection to: ' + db.production.url + '\n' + err)}
     else{console.log('Connection Successful')}
     //Database Drop
     // mongoose.connection.db.dropDatabase();
