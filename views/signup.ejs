@@ -11,22 +11,20 @@
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
 
-    <!-- LOGIN FORM -->
-    <form action="/register" method="post">
+    <!-- Sign Up FORM -->
+    <form action="/register" method="POST">
         <div class="form-group">
             <label>Email</label>
-            <input type="text" class="form-control" name="email">
+            <input type="text" class="form-control" name="email" required>
         </div>
         <div class="form-group">
             <label>Password</label>
-            <input type="password" class="form-control" name="password">
+            <input type="password" class="form-control" name="password" required>
         </div>
 
         <button type="submit" class="btn btn-warning btn-lg">Signup</button>
     </form>
-
     <hr>
-
     <p>Already have an account? <a href="/login">Login</a></p>
 
 </div>

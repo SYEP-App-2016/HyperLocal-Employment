@@ -11,8 +11,9 @@ router.get('/Profile', isLoggedIn, function(req, res){
     var o = {edu: [],vol: [],exp: [],usr: {}};
 
     console.log(req.user.id);
-    User.findOne({account_id: req.user.id}, function(err, user){
+    User.findOne({acc_id: req.user.id}, function(err, user){
         if(err) throw err;
+        console.log(user);
         o.usr = user;
         getEducation();
     });
@@ -39,7 +40,7 @@ router.get('/Profile', isLoggedIn, function(req, res){
             res.render('profile', {
                 results: o
             });
-            //res.send({result: o});
+            console.log(o);
         })
     }
 

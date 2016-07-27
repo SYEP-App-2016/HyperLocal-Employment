@@ -3,12 +3,12 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
-    first_name: String,
-    middle_init: String,
-    last_name: String,
+    f_name: String,
+    m_init: String,
+    l_name: String,
     created_at: Date,
     updated_at: Date,
-    account_id: {type: mongoose.Schema.Types.ObjectId, ref: 'account'}
+    acc_id: {type: mongoose.Schema.Types.ObjectId, ref: 'account'}
 })
 
 userSchema.pre('save', function(next){

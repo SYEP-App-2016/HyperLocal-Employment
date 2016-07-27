@@ -2,10 +2,10 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var volunteerSchema = new Schema({
-    organization: String,
+    org: String,
     role: String,
     cause: String,
-    description: String,
+    desc: String,
     how_long: String,
     profile_id: {type: mongoose.Schema.Types.ObjectId, ref:'profile'}
 });

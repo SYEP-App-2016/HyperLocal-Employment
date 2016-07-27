@@ -10,7 +10,8 @@ var express = require('express'),
     methodOverride = require('method-override'),
     session = require('express-session'),
     db = require('./config/database.js'),
-    localStrategies = require('passport-local').Strategy;
+    localStrategies = require('passport-local').Strategy,
+    fileUpload = require('express-fileupload');
 
 mongoose.connect(db.url, function(err){
     if(err) {console.log('Error Connection to: ' + db.url + '\n' + err)}
@@ -36,6 +37,7 @@ app.use(session({secret: 'ihatecats', resave: true, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(fileUpload());
 
 app.use('/', require('./controllers'));
 

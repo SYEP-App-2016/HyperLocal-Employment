@@ -39,12 +39,12 @@ router.post('/addEducation', function(req, res){
     // res.send(dbFunctions.addEducation(req.body));
     //Remember to include ._id as an hidden field to get user_id
     var newEducation = new Education({
-        name_of_institution: req.body.name_of_institution,
-        degree: req.body.degree,
-        year_graduated: req.body.year_graduated,
-        field_of_study: req.body.field_of_study,
-        type_of_institution: req.body.type_of_institution,
-        profile_id: req.body.usr_id
+        instit_name: req.body.name_of_institution,
+        deg: req.body.degree,
+        yr_grad: req.body.year_graduated,
+        f_study: req.body.field_of_study,
+        instit_type: req.body.type_of_institution,
+        prof_id: req.body.usr_id
     });
     newEducation.save(function(err){if(err)throw err; console.log('User Education Added.')});
     res.redirect('/' + req.body.usr_id + '/Profile');
