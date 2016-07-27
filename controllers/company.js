@@ -3,7 +3,9 @@ var express = require('express'),
     Company = require('../models/company');
 
 router.get('/newCompany', function(req, res){
-    res.render('newCompany');
+    res.render('newCompany', {
+        user: req.user
+    });
 });
 
 router.post('/registerCompany', function(req, res){

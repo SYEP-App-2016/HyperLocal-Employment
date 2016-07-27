@@ -4,7 +4,7 @@ var passport = require('passport'),
     router = express.Router();
 
 router.get('/register', function(req, res){
-    res.render('signup', {message: req.flash('signupMessage')});
+    res.render('signup', {message: req.flash('signupMessage'), user: req.user});
 });
 
 router.post('/register', passport.authenticate('local-signup', {
@@ -14,7 +14,7 @@ router.post('/register', passport.authenticate('local-signup', {
 }));
 
 router.get('/registerCompany', function(req, res){
-    res.render('companySignUp', {message: req.flash('signUpMessage')});
+    res.render('companySignUp', {message: req.flash('signUpMessage'), user: req.user});
 });
 
 router.post('/registerCompanyAccount', passport.authenticate('local-signup', {
@@ -24,7 +24,7 @@ router.post('/registerCompanyAccount', passport.authenticate('local-signup', {
 }));
 
 router.get('/login', function(req, res){
-    res.render('login', {message: req.flash('loginMessage')});
+    res.render('login', {message: req.flash('loginMessage'), user: req.user});
 });
 
 // router.post('/login', passport.authenticate('local-login', {

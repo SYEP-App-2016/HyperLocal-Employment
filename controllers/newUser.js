@@ -3,7 +3,7 @@ var express = require('express'),
     User = require('../models/user');
 
 router.get('/newUser', function(req, res){
-    res.render('newUser');
+    res.render('newUser', {user: req.user});
 });
 
 router.post('/newUser', function(req, res){

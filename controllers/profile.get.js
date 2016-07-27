@@ -38,7 +38,8 @@ router.get('/Profile', isLoggedIn, function(req, res){
         Experience.find({profile_id: req.params.id}, function(err, exp){
             o.exp = exp;
             res.render('profile', {
-                results: o
+                results: o,
+                user: req.user
             });
             console.log(o);
         })

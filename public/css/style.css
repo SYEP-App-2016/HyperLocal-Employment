@@ -20,3 +20,7 @@
 .navbar{
     border-radius: 0;
 }
+
+.display{
+    display: visible;
+}

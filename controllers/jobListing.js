@@ -7,7 +7,8 @@ router.get('/jobListing', function(req, res){
         if(err) throw err;
         // res.send(jobs);
         res.render('jobListings', {
-            results: jobs
+            results: jobs,
+            user: req.user
         });
     });
 });

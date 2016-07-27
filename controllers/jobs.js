@@ -3,7 +3,7 @@ var express = require('express'),
     Job = require('../models/job');
 
 router.get('/newJob', function(req, res){
-    res.render('job', {company: req.user});
+    res.render('job', {user: req.user});
 });
 
 router.post('/newJob', function(req, res){

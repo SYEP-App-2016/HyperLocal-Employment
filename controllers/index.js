@@ -11,7 +11,10 @@ router.use('/', require('./jobs'));
 router.use('/', require('./company'));
 
 router.get('/', function(req, res){
-    res.render('index');
+    if(req.user) res.render('profile')
+    res.render('index', {
+        user: req.user
+    });
 });
 
 module.exports = router;
