@@ -8,8 +8,11 @@ router.get('/newUser', function(req, res){
 
 router.post('/newUser', function(req, res){
     var newUser = new User({
-        f_name: req.body.first_name,
-        l_name: req.body.last_name,
+        f_name: req.body.f_name,
+        m_init: req.body.m_init,
+        l_name: req.body.l_name,
+        obj: req.body.obj,
+        job_interests: req.body.job_interests,
         acc_id: req.user._id
     });
 

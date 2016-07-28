@@ -1,18 +1,21 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    bcrypt = require('bcrypt-nodejs');
+    bcrypt = require('bcrypt-nodejs'),
+    moment = require('moment');
 
 var userSchema = new Schema({
     f_name: String,
     m_init: String,
     l_name: String,
+    obj: String,
+    job_interests: [String],
     created_at: Date,
     updated_at: Date,
     acc_id: {type: mongoose.Schema.Types.ObjectId, ref: 'account'}
 })
 
 userSchema.pre('save', function(next){
-    var currentDate = new Date();
+    var currentDate = moment();
 
     this.updated_at = currentDate;
 

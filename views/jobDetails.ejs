@@ -1,0 +1,48 @@
+<% include ./templates/header %>
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="row">
+            <div class="col-sm-4">
+                <img class="picture" src= "<%= job.logo %>">
+            </div>
+            <div class="col-sm-8">
+                <div class="row">
+                    <h2 style="display: inline-block"><%= job.jb_position %></h2>
+                    <h4 style="display: inline-block"><em> - <%= company.company_name %></em></h4>
+                    <h4><em><%= job.catergory %></em></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Description</h1>
+                    <h4><%= job.jb_desc %></h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h1 class="page-header">Required Skills</h1>
+                    <% for(var i = 0; i < job.req_skills.length; i++){ %>
+                        <li><p><%= job.req_skills[i] %></p></li>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h1>Contact Information</h1>
+                <h4>Email: <%= job.jb_contact %></h4>
+                <h4>Website: <%= job.url %></h4>
+            </div>
+        </div>
+    </div>
+
+    <% include ./templates/footer %>

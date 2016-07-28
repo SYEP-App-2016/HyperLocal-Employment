@@ -24,3 +24,29 @@
 .display{
     display: visible;
 }
+
+.thumbnail{
+    height: 375px;
+}
+
+.picture{
+  height: 300px;
+  width: 250px;
+}
+
+/*.container{
+  width: 600px;
+  border: solid 1px red;
+}*/
+.box1{
+  display: inline-block;
+  width: 200px;
+  height: 100px;
+  margin: 1em;
+}
+p{
+    word-wrap: break-word;
+}
+.desc_teaser{
+    height: 45px;
+}

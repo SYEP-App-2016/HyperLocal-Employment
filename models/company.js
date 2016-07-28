@@ -4,7 +4,10 @@ var mongoose = require('mongoose'),
 var companySchema = new Schema({
     company_name: String,
     company_address: String,
-    url: String
+    url: String,
+    acc_id: mongoose.Schema.Types.ObjectId,
+    logo: String,
+    history: String
 });
 
 var Company = mongoose.model('Company', companySchema);

@@ -1,13 +1,42 @@
+<% include ./templates/header %>
 <div class="container">
     <form method="POST" action="newUser">
-      <div class="form-group">
-        <label>First Name</label>
-        <input type="text" class="form-control" name="first_name" placeholder="first_name">
+        <div class="row">
+          <div class="form-group col-xs-12 col-md-6">
+            <label>First Name</label>
+            <input type="text" name="f_name" class="form-control" placeholder="First Name">
+          </div>
+          <div class="form-group col-xs-12 col-md-1">
+            <label>M. Init</label>
+            <input type="text" name="m_init" class="form-control" placeholder="M" maxlength="1">
+          </div>
+          <div class="form-group col-xs-12 col-md-5">
+            <label>Last Name</label>
+            <input type="text" name="l_name" class="form-control" placeholder="Last Name">
+          </div>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="text" class="form-control" name="last_name" placeholder="last_name">
+          <label>Objective</label>
+          <input type="text" name="obj" class="form-control" placeholder="Objective">
       </div>
-      <button type="submit" class="btn btn-default">Submit</button>
+      <div class="form-group">
+          <label>Job Interests</label>
+          <div class="row">
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories">
+                  </select>
+              </div>
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories2">
+                  </select>
+              </div>
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories3">
+                  </select>
+              </div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Continue</button>
     </form>
 </div>
+<% include ./templates/footer %>

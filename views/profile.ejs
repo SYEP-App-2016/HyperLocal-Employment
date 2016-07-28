@@ -12,7 +12,11 @@
                      <p>
                         <strong>id</strong>: <%= results.usr._id %><br>
                         <strong>first name</strong>: <%= results.usr.f_name %><br>
+                        <strong>middle_init</strong>: <%= results.usr.m_init %><br>
                         <strong>last name</strong>: <%= results.usr.l_name %>
+                        <% for(var i = 0; i < results.usr.job_interests.length; i++){%>
+                            <p><%= results.usr.job_interests[i] %></p>
+                        <%}%>
                     </p>
 
             </div>

@@ -1,5 +1,7 @@
 var passport = require('passport'),
     Account = require('../models/account'),
+    User = require('../models/user'),
+    Company = require('../models/company'),
     express = require('express'),
     router = express.Router();
 
@@ -27,26 +29,22 @@ router.get('/login', function(req, res){
     res.render('login', {message: req.flash('loginMessage'), user: req.user});
 });
 
-// router.post('/login', passport.authenticate('local-login', {
-//     successRedirect: '/profile',
-//     failureRedirect: '/login',
-//     failureFlash: true
-// }));
-
 router.post('/login', passport.authenticate('local-login', {
     failureRedirect: '/login',
     failureFlash: true
 }), function(req, res){
-    if(req.user.roleID == 0) res.redirect('/profile');
-    if(req.user.roleID == 1) res.redirect('/company');
+    if(req.user.roleID == 0){
+        User.findOne({acc_id: req.user._id}, function(err, user){
+            if(!user){res.redirect('/newUser');}
+            else{res.redirect('/profile');}
+        });
+    } else if(req.user.roleID == 1){
+        Company.findOne({acc_id: req.user._id}, function(err, company){
+            if(!company){res.redirect('/newCompany');}
+            else{res.redirect('/company');}
+        });
+    }
 });
-
-// router.post('/login', passport.authenticate('local-login'), function(err, req, res){
-//     // if(!req.user) res.redirect('/login');
-//     if(err)
-//     if(req.user.roleID == 0) res.redirect('/profile');
-//     if(req.user.roleID == 1) res.redirect('/company');
-// })
 
 
 router.get('/logout', function(req, res){

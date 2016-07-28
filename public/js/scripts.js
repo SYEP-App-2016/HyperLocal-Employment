@@ -20,14 +20,22 @@ $(document).ready(function(){
 
     $('.volForm').hide();
 
+    var catergories = ['Agriculture, Food and Natural Resources', 'Architecture and Construction', 'Arts, Audio/Video Technology and Communications', 'Business Management and Administration', 'Education and Training', 'Finance', 'Government and Public Administration', 'Health Science', 'Hospitality and Tourism', 'Human Services', 'Information Technology', 'Law, Public Safety, Corrections and Security', 'Manufacturing', 'Marketing, Sales and Service', 'Science, Technology, Engineering and Mathematics', 'Transportation, Distribution and Logistics'];
 
-    // COULD BE CLEANER IN JQUERY
+    var options = $("#catergories");
+    for(var i = 0; i < catergories.length; i++){
+      options.append($("<option/>").val(catergories[i]).text(catergories[i]));
+    }
 
+    var options = $("#catergories2");
+    for(var i = 0; i < catergories.length; i++){
+      options.append($("<option/>").val(catergories[i]).text(catergories[i]));
+    }
 
-
-// var v = $("[name='skills[]']")[4]
-// v.value
-
+    var options = $("#catergories3");
+    for(var i = 0; i < catergories.length; i++){
+      options.append($("<option/>").val(catergories[i]).text(catergories[i]));
+    }
 
 
 });
@@ -53,7 +61,7 @@ function createInput(){
   newInput.setAttributeNode(c);
   newInput.setAttributeNode(d);
 
-  newInput.innerHTML = '<div class="input-group"><input type="text" class="form-control" name="skills[]" placeholder="Enter skill"/><span class="input-group-btn"> <button id="btnNewSkill"  type="button" class="btn btn-default" aria-label="Left Align" onclick="createInput()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></span></div>';
+  newInput.innerHTML = '<div class="input-group"><input type="text" class="form-control" name="req_skills[]" placeholder="Enter skill"/><span class="input-group-btn"> <button id="btnNewSkill"  type="button" class="btn btn-default" aria-label="Left Align" onclick="createInput()"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button></span></div>';
 
     var section  = document.getElementById("dvSkillsSection");
 

@@ -9,11 +9,12 @@ var jobSchema = new Schema({
     req_skills: [String],
     date_posted: Date,
     deadline: Date,
-    full_time: Boolean,
-    sal: Number, //If full time display salary ex. $36,000/yr
-    intern: Boolean,
-    pay_rt: Number, //If internship, display pay rate ex. $9/hr
+    job_type: String, //Full-time, part-time or internship
+    pay_rt: Number,
+    sal: String,
     url: String,
+    catergory: {required: true, type: String},
+    logo: String,
     company_id: mongoose.Schema.Types.ObjectId,
     view_count: {type: Number, default: 0}
 });
