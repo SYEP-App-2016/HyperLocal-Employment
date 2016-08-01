@@ -39,9 +39,25 @@ app.use(passport.session());
 app.use(flash());
 app.use(fileUpload());
 
+
+// TO MANY REPEATED ROUTES IN SEPARATE FILES 
 app.use('/', require('./controllers'));
 
+
+// ALTERNATIVE METHOD
+app.use('/Register', require('./controllers/registration.js'));
+
+
+// ROUTE TO HANDLE / User AS Member
+// COMBINE PROFILE CONTROLLERS
+// app.use('/Member');
+app.use('/Business', require('./controllers/company2.js'));
+app.use('/Employment', require('./controllers/listing.js'));
+
+
+// WHAT IS USING THIS REQUIRE???
 require('./config/passport');
+
 
 app.listen(port);
 console.log('Listening on port ' + port);

@@ -5,34 +5,22 @@ var passport = require('passport'),
     express = require('express'),
     router = express.Router();
 
-router.get('/register', function(req, res){
+router.get('/Signup', function(req, res){
     res.render('signup', {message: req.flash('signupMessage'), user: req.user});
 });
 
-router.post('/register', passport.authenticate('local-signup', {
+router.post('/Signup', passport.authenticate('local-signup', {
     successRedirect: '/newUser',
     failureRedirect: '/register',
     failureFlash: true
 }));
 
-/* SHOULD BE IN COMPANY 
-router.get('/registerCompany', function(req, res){
-    res.render('companySignUp', {message: req.flash('signUpMessage'), user: req.user});
-});
 
-router.post('/registerCompanyAccount', passport.authenticate('local-signup', {
-    successRedirect: '/newCompany',
-    failureRedirect: '/registerCompany',
-    failureFlash: true
-}));
-*/
-
-router.get('/login', function(req, res){
+router.get('/Login', function(req, res){
     res.render('login', {message: req.flash('loginMessage'), user: req.user});
 });
 
-// WHY IS COMPANY APART OF LOGGING IN?
-router.post('/login', passport.authenticate('local-login', {
+router.post('/Login', passport.authenticate('local-login', {
     failureRedirect: '/login',
     failureFlash: true
 }), function(req, res){
