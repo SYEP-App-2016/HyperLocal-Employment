@@ -21,19 +21,26 @@ router.get('/', function(req, res){
     Job.find({}, function(err, jobs){
         if(err) throw err;
         // res.send(jobs);
+        console.log(jobs);
         if(jobs.length > 0){
-            o[moment(jobs[jobs.length - 1].date_posted).format("LL")] = [];
+            o[moment(jobs[0].date_posted).format("LL")] = [];
             // o[jobs[jobs.length - 1].date_posted] = [];
             var indx = 0;
             for(var i = 0; i < jobs.length; i++)
             {
+                var currentDate = moment(jobs[i].date_posted).format("LL");
                 for(date in o){
-                    if(date == moment(jobs[i].date_posted).format("LL")){o[date].push(jobs[i])}
-                    indx++;
-                    if(indx == Object.keys(o).length && date != moment(jobs[i].date_posted).format("LL")){
-                        o[moment(jobs[i].date_posted).format("LL")] = [];
-                        o[moment(jobs[i].date_posted).format("LL")].push(jobs[i]);
+                    if(date == currentDate){
+                        o[date].push(jobs[i]);
+                        indx++;
+                    } else if(date != currentDate && Object.keys(o).length == (indx + 1)){
+                        var newDate = moment(jobs[i].date_posted).format('LL');
+                        o[newDate] = [];
+                        o[newDate].push(jobs[i]);
                         indx = 0;
+                    }
+                    else{
+                        console.log(jobs[i].date_posted);
                     }
                 }
             }

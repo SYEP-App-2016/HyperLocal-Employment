@@ -26,12 +26,16 @@
 }
 
 .thumbnail{
-    height: 375px;
+    height: 400px;
 }
 
 .picture{
   height: 300px;
   width: 250px;
+}
+
+.catsal{
+    height: 30px;
 }
 
 /*.container{
