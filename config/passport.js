@@ -6,11 +6,13 @@ var localStrategy = require('passport-local'),
 passport.serializeUser(function(account,done){
     done(null, account.id);
 });
+
 passport.deserializeUser(function(id, done){
     Account.findById(id, function(err, account){
         done(err, account);
     });
 });
+
 passport.use('local-signup',
     new localStrategy({
         usernameField: 'email',
@@ -39,6 +41,7 @@ passport.use('local-signup',
         });
     }
 ));
+
 passport.use('local-login',
     new localStrategy({
         usernameField: 'email',
@@ -52,4 +55,5 @@ passport.use('local-login',
             if(!account.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Oops! Wrong Password. Please Try Again.'));
             return done(null, account);
         });
-    }));
+    })
+);
