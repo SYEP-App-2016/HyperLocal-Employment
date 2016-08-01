@@ -3,15 +3,18 @@ var localStrategy = require('passport-local'),
     User = require('../models/user'),
     passport = require('passport');
 
+
 passport.serializeUser(function(account,done){
     done(null, account.id);
 });
+
 
 passport.deserializeUser(function(id, done){
     Account.findById(id, function(err, account){
         done(err, account);
     });
 });
+
 
 passport.use('local-signup',
     new localStrategy({
@@ -41,6 +44,7 @@ passport.use('local-signup',
         });
     }
 ));
+
 
 passport.use('local-login',
     new localStrategy({
