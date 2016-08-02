@@ -4,7 +4,7 @@ var express = require('express'),
 
 // CRUD
 
-// CREATE 
+// CREATE
 router.get('/Create', function(req, res){
     res.render('newCompany', {
         user: req.user

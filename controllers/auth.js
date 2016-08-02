@@ -15,7 +15,7 @@ router.post('/register', passport.authenticate('local-signup', {
     failureFlash: true
 }));
 
-/* SHOULD BE IN COMPANY 
+/* SHOULD BE IN COMPANY
 router.get('/registerCompany', function(req, res){
     res.render('companySignUp', {message: req.flash('signUpMessage'), user: req.user});
 });

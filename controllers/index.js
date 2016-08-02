@@ -23,24 +23,21 @@ router.get('/', function(req, res){
         // res.send(jobs);
         console.log(jobs);
         if(jobs.length > 0){
-            o[moment(jobs[0].date_posted).format("LL")] = [];
+            o[moment(jobs[jobs.length - 1].date_posted).format("LL")] = [];
             // o[jobs[jobs.length - 1].date_posted] = [];
             var indx = 0;
-            for(var i = 0; i < jobs.length; i++)
+            for(var i = jobs.length - 1; i > 0; i--)
             {
                 var currentDate = moment(jobs[i].date_posted).format("LL");
                 for(date in o){
                     if(date == currentDate){
                         o[date].push(jobs[i]);
                         indx++;
-                    } else if(date != currentDate && Object.keys(o).length == (indx + 1)){
+                    } else if(date != currentDate){
                         var newDate = moment(jobs[i].date_posted).format('LL');
                         o[newDate] = [];
                         o[newDate].push(jobs[i]);
                         indx = 0;
-                    }
-                    else{
-                        console.log(jobs[i].date_posted);
                     }
                 }
             }
