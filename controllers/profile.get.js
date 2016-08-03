@@ -10,7 +10,6 @@ router.get('/Profile', isLoggedIn, function(req, res){
     //res.render('profile', {user: req.user});
     var o = {edu: [],vol: [],exp: [],usr: {}};
 
-    console.log(req.user.id);
     User.findOne({acc_id: req.user.id}, function(err, user){
         if(err) throw err;
         console.log(user);

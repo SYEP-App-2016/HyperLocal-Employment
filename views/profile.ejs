@@ -1,28 +1,260 @@
 <% include ./templates/header %>
 <div class="container">
 
-    <div class="page-header text-center">
-        <h1><span class="fa fa-anchor"></span> Profile Page</h1>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
-                     <p>
-                        <strong>id</strong>: <%= results.usr._id %><br>
-                        <strong>first name</strong>: <%= results.usr.f_name %><br>
-                        <strong>middle_init</strong>: <%= results.usr.m_init %><br>
-                        <strong>last name</strong>: <%= results.usr.l_name %>
-                        <% for(var i = 0; i < results.usr.job_interests.length; i++){%>
-                            <p><%= results.usr.job_interests[i] %></p>
-                        <%}%>
-                    </p>
-
+    <div class="header">
+        <h1> Profile Page<h1/>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body row">
+                <div class="col-sm-3">
+                    <img class="img-responsive" src="http://www.fixflo.com/wp-content/uploads/2016/06/Duncan.png" alt="...">
+                </div>
+                <div class="col-sm-8 col-md-9">
+                    <div class="right">
+                        <h1><%= results.usr.f_name %> <%= results.usr.l_name %></h1>
+                        <h3><small><em><%= results.usr.address %></em></small></h3>
+                        <p><u>Phone Number:</u> <%= results.usr.cell %></p>
+                        <p><u>Email Address:</u> <%= results.usr.email %></p>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3">
+                <center><h1><small>Education</small></h1></center>
+            </div>
 
-    </div>
+            <div class="col-xs-12 col-sm-9">
+                <% if(results.edu.length == 0){%>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            You have no Education Experience posted. Would you like to add one?
+                            <div class="btn btn-primary pull-right fa fa-plus eduBtn"></div>
+                        </div>
+                    </div>
+                    <%} else {%>
+                        <% for(var i = 0; i < results.edu.length; i++){ %>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <p><u><%= results.edu[i].instit_name %>/ <%= results.edu[i].deg %></u></p>
+                                    <p><%= results.edu[i].yr_grad %></p>
+                                    <p><%= results.edu[i].f_study %></p>
+                                    <div class="row">
+                                        <div class="col-xs-2 col-xs-offset-10">
+                                            <div class="fa fa-pencil btn btn-lg btn-success"></div>
+                                            <form method="POST" action="removeEducation" style="display: inline-block">
+                                                <input type="hidden" value="<%= results.edu[i]._id %>" name="edu_id"/>
+                                                <button class="fa fa-trash btn-lg btn-danger"></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }%>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="btn btn-primary pull-right fa fa-plus eduBtn"></div>
+                                </div>
+                            </div>
+                            <% } %>
+                            <div class="panel panel-default eduForm">
+                                <div class="panel-body">
+                                    <form method="POST" action="addEducation">
+                                        <div class="form-group">
+                                            <label>Name of Institution</label>
+                                            <input type="text" class="form-control" name="name_of_institution" placeholder="Name of Institution">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Degree</label>
+                                            <input type="text" class="form-control" name="degree" placeholder="Degree">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Field of Study</label>
+                                            <input type="text" class="form-control" name="field_of_study" placeholder="Field of Study">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Year Graduated</label>
+                                            <input type="number" class="form-control" name="year_graduated" placeholder="1990">
+                                        </div>
+                                        <input type="hidden" name="usr_id" value="<%= results.usr._id %>">
+                                        <div class="row">
+                                            <div class="col-xs-6">
+                                                <div class="btn btn-default">Cancel</div>
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-</div>
-<% include ./templates/footer %>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            <center><h1><small>Work Experience</small></h1></center>
+                        </div>
+
+
+
+                        <div class="col-xs-12 col-sm-9">
+                            <% if(results.exp.length == 0){%>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        You have no Work Experience posted. Would you like to add one?
+                                        <div class="btn btn-primary pull-right fa fa-plus expBtn"></div>
+                                    </div>
+                                </div>
+                                <%} else {%>
+                                    <% for(var i = 0; i < results.exp.length; i++){ %>
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <p> <u>Company Name/Job Title:</u></p>
+                                                <p><i> Description</i></p>
+                                                <p>MONTH/YEAR-MONTH/YEAR, LOCATION</p>
+                                                <div class="row">
+                                                    <div class="col-xs-2 col-xs-offset-10">
+                                                        <div class="fa fa-pencil btn btn-lg btn-success"></div>
+                                                        <form method="POST" action="removeExperience" style="display: inline-block">
+                                                            <input type="hidden" value="<%= results.exp[i]._id %>" name="exp_id"/>
+                                                            <button class="fa fa-trash btn-lg btn-danger"></button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <% }%>
+                                        <div class="panel panel-default">
+                                            <div class="panel-body">
+                                                <div class="btn btn-primary pull-right fa fa-plus expBtn"></div>
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                        <div class="panel panel-default expForm">
+                                            <div class="panel-body">
+                                                <form method="POST" action="addExperience">
+                                                    <div class="form-group">
+                                                        <label>Company Name</label>
+                                                        <input type="text" class="form-control" name="company_name" placeholder="Company Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Job Position</label>
+                                                        <input type="text" class="form-control" name="job_position" placeholder="Job Position">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Job Description</label>
+                                                        <textarea type="text" class="form-control" name="job_description" placeholder="Password"></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <!-- <div class="col-lg-12"> -->
+                                                        <label>Start - End Date</label>
+                                                        <!-- </div> -->
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <input type="date" class="form-control" name="start_date">
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <input type="date" class="form-control" name="end_date">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <input type="hidden" name="usr_id" value="<%= results.usr._id %>">
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-3">
+                                        <center><h1><small>Volunteer Work</small></h1></center>
+                                    </div>
+
+
+
+                                    <div class="col-xs-12 col-sm-9">
+                                        <% if(results.vol.length == 0){%>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    You have no Volunteer Experience posted. Would you like to add one?
+                                                    <div class="btn btn-primary pull-right fa fa-plus volBtn"></div>
+                                                </div>
+                                            </div>
+                                            <%} else {%>
+                                                <% for(var i = 0; i < results.vol.length; i++){ %>
+                                                    <div class= "panel panel-default">
+                                                        <div class="panel-body">
+                                                            <p><u> Organization/ Cause:</u></p>
+                                                            <p> Role/Description</p>
+                                                            <div class="row">
+                                                                <div class="col-xs-2 col-xs-offset-10">
+                                                                    <div class="fa fa-pencil btn btn-lg btn-success"></div>
+                                                                    <form method="POST" action="removeVolunteerExp" style="display: inline-block">
+                                                                        <input type="hidden" value="<%= results.vol[i]._id %>" name="vol_id"/>
+                                                                        <button class="fa fa-trash btn-lg btn-danger"></button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% }%>
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-body">
+                                                            <div class="btn btn-primary pull-right fa fa-plus volBtn"></div>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                                    <div class="panel panel-default volForm">
+                                                        <div class="panel-body">
+                                                            <form method="POST" action="addVolunteerExp">
+                                                                <div class="form-group">
+                                                                    <label>Organization</label>
+                                                                    <input type="text" class="form-control" name="organization" placeholder="Name of Organization">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Role</label>
+                                                                    <input type="text" class="form-control" name="role" placeholder="Role">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label>Cause</label>
+                                                                    <input type="text" class="form-control" name="cause" placeholder="Cause">
+                                                                </div>
+                                                                <input type="hidden" name="usr_id" value="<%= results.usr._id %>">
+                                                                <div class="row">
+                                                                    <div class="col-lg-12">
+                                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="col-sm-12 col-md-12">
+                                            <div class="button">
+                                            <div class="dropdown">
+                                            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            Edit
+                                            <span class="caret">
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li><a href="#">Edit Information</a></li>
+                                    <li><a href="#">Edit Profile Picture</a><li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">Cancel Changes </a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> -->
+</body>
+</html>

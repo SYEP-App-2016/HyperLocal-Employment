@@ -14,6 +14,7 @@ var jobSchema = new Schema({
     sal: String,
     url: String,
     catergory: {required: true, type: String},
+    applicants: [mongoose.Schema.Types.ObjectId],
     logo: String,
     company_id: mongoose.Schema.Types.ObjectId,
     view_count: {type: Number, default: 0}

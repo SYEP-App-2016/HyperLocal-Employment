@@ -7,7 +7,7 @@ var volunteerSchema = new Schema({
     cause: String,
     desc: String,
     how_long: String,
-    profile_id: {type: mongoose.Schema.Types.ObjectId, ref:'profile'}
+    prof_id: {type: mongoose.Schema.Types.ObjectId, ref:'profile'}
 });
 
 var Volunteer = mongoose.model('Volunteer', volunteerSchema);

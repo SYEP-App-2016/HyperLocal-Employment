@@ -11,6 +11,7 @@ router.use('/', require('./newUser'));
 router.use('/', require('./jobListing'));
 router.use('/', require('./jobs'));
 router.use('/', require('./company'));
+router.use('/', require('./profile.remove'));
 
 router.get('/', function(req, res){
     // if(req.user) res.render('profile')
@@ -30,14 +31,16 @@ router.get('/', function(req, res){
             {
                 var currentDate = moment(jobs[i].date_posted).format("LL");
                 for(date in o){
-                    if(date == currentDate){
-                        o[date].push(jobs[i]);
-                        indx++;
-                    } else if(date != currentDate){
-                        var newDate = moment(jobs[i].date_posted).format('LL');
-                        o[newDate] = [];
-                        o[newDate].push(jobs[i]);
-                        indx = 0;
+                    if(jobs[i].deadline >= Date.now()){
+                        if(date == currentDate){
+                            o[date].push(jobs[i]);
+                            indx++;
+                        } else if(date != currentDate){
+                            var newDate = moment(jobs[i].date_posted).format('LL');
+                            o[newDate] = [];
+                            o[newDate].push(jobs[i]);
+                            indx = 0;
+                        }
                     }
                 }
             }

@@ -12,6 +12,10 @@ router.post('/newUser', function(req, res){
         m_init: req.body.m_init,
         l_name: req.body.l_name,
         obj: req.body.obj,
+        home: req.body.home,
+        cell: req.body.cell,
+        email: req.user.email,
+        address: (req.body.state) + " " + (req.body.city) + ", " + (req.body.state) + " " (req.body.zip),
         job_interests: req.body.job_interests,
         acc_id: req.user._id
     });

@@ -7,7 +7,7 @@ var experienceSchema = new Schema({
     company_name: String,
     start_date: Date,
     end_date: Date,
-    profile_id: {type: mongoose.Schema.Types.ObjectId, ref: 'profile'}
+    prof_id: {type: mongoose.Schema.Types.ObjectId, ref: 'profile'}
 });
 
 var Experience = mongoose.model('Experience', experienceSchema);
