@@ -4,11 +4,14 @@ var express = require('express'),
     Job = require('../models/job'),
     func = require('./func.js');
 
+
+
 router.get('/newCompany', function(req, res){
     res.render('newCompany', {
         user: req.user
     });
 });
+
 
 router.post('/registerCompany', function(req, res){
     var logos = ['Logo_TV_2015.png', 'apple.jpg', 'twitter/png'];
