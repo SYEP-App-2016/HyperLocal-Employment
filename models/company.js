@@ -17,6 +17,7 @@ var companySchema = new Schema({
     url: String
 });
 
+
 var Company = mongoose.model('Company', companySchema);
 
 module.exports = Company;
