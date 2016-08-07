@@ -6,6 +6,8 @@ var express = require('express'),
     Volunteer = require('../models/volunteer.js');
 
 
+
+// REDESIGN LOGIC OR MODEL TO CONTAIN EVERYTHING IN ONE DOC
 router.get('/Profile', isLoggedIn, function(req, res){
     if(req.user.roleID == 1){res.redirect('/company');}
     //res.render('profile', {user: req.user});
