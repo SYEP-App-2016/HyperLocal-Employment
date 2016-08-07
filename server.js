@@ -41,6 +41,7 @@ app.use(fileUpload());
 
 
 // TO MANY REPEATED ROUTES IN SEPARATE FILES
+// REMOVE IN NEXT UPDATE
 app.use('/', require('./controllers'));
 
 
