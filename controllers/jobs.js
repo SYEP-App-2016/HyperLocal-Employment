@@ -4,6 +4,7 @@ var express = require('express'),
     Company = require('../models/company'),
     moment = require('moment');
 
+/*
 router.get('/newJob', isLoggedIn, function(req, res){
     Company.findOne({acc_id: req.user._id}, function(err, comp){
         console.log(comp);
@@ -35,11 +36,16 @@ router.post('/newJob', function(req, res){
 
     res.redirect('/');
 });
+*/
 
+
+/*
+// DON'T DO GENERIC ROUTING - IT TAKES EVERYTHING!
+// 
 router.get('/:id/:jb_position', function(req, res){
     Job.findOne({_id: req.params.id}, function(err, job){
         if(err) console.log(err);
-        job.view_count  = job.view_count+1;
+        // job.view_count  = job.view_count+1;
         job.save(function(err){
              if(err){console.log(err)}
         });
@@ -52,6 +58,7 @@ router.get('/:id/:jb_position', function(req, res){
         });
     });
 });
+*/
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated() && req.user.roleID == 1) return next();
