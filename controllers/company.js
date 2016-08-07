@@ -22,6 +22,7 @@ router.post('/registerCompany', function(req, res){
         acc_id: req.user._id,
         history: req.body.history
     });
+    
     newCompany.save(function(err, company){
         if(err){console.log(err)}
         else{console.log('New Company Added!')}
