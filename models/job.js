@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
+
 var jobSchema = new Schema({
     jb_position: {required: true, type: String},
     jb_desc:  String,
@@ -22,6 +23,7 @@ var jobSchema = new Schema({
     },
     view_count: {type: Number, default: 0}
 });
+
 
 var Job = mongoose.model('Job', jobSchema);
 
