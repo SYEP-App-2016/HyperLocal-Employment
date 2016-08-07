@@ -4,7 +4,9 @@ var express = require('express'),
     Company = require('../models/company'),
     moment = require('moment');
 
+// FIND BETTER WAY OF INCLUDING
 var ObjectId = require('mongoose').Types.ObjectId;
+
 
 // TEST METHOD
 // GET DATA BY ID NEEDS -> require('mongoose').Types.ObjectId;
