@@ -5,6 +5,7 @@ var express = require('express'),
     Education = require('../models/education.js'),
     Volunteer = require('../models/volunteer.js');
 
+
 router.get('/Profile', isLoggedIn, function(req, res){
     if(req.user.roleID == 1){res.redirect('/company');}
     //res.render('profile', {user: req.user});
