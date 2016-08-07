@@ -10,9 +10,6 @@ router.get('/newUser', function(req, res){
 
 router.post('/newUser', function(req, res){
     var newUser = new User({
-        // f_name: req.body.f_name,
-        // m_init: req.body.m_init,
-        // l_name: req.body.l_name,
         obj: req.body.obj,
         home: req.body.home,
         cell: req.body.cell,
