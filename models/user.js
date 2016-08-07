@@ -11,7 +11,6 @@ var userSchema = new Schema({
     cell: String,
     home: String,
     email: String,
-    address: String,
     job_interests: [String],
     created_at: Date,
     updated_at: Date,

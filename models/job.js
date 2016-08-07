@@ -16,9 +16,13 @@ var jobSchema = new Schema({
     catergory: {required: true, type: String},
     applicants: [mongoose.Schema.Types.ObjectId],
     logo: String,
-    company_id: mongoose.Schema.Types.ObjectId,
+    company: {
+        company_id: mongoose.Schema.Types.ObjectId,
+        company_name: String
+    },
     view_count: {type: Number, default: 0}
 });
 
 var Job = mongoose.model('Job', jobSchema);
+
 module.exports = Job;

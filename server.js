@@ -47,12 +47,10 @@ app.use('/', require('./controllers'));
 // ALTERNATIVE METHOD
 app.use('/Register', require('./controllers/registration.js'));
 
-
-// ROUTE TO HANDLE / User AS Member
-// COMBINE PROFILE CONTROLLERS
-// app.use('/Member');
 app.use('/Business', require('./controllers/company2.js'));
-app.use('/Employment', require('./controllers/listing.js'));
+app.use('/Member', require('./controllers/profile2.js'));
+app.use('/Job', require('./controllers/job2.js'))
+app.use('/Classifieds', require('./controllers/listing.js'));
 
 
 // WHAT IS USING THIS REQUIRE???

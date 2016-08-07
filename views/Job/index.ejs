@@ -1,0 +1,66 @@
+<% include ../templates/header %>
+
+
+<div class="container">
+    <div class="page-header">
+        <h1>Job Listing</h1>
+    </div>
+    
+    <%
+        var json = JSON.parse(results),
+            cur = "";
+        for(var i = 0; i < json.length-1; i++ ) { 
+    %>
+    <%= i %>
+
+        <div class="row page-header">
+            <div class="col-xs-12 col-sm-12 col-md-12 bg-success">
+                    <%  
+                        if(cur === json[i].date ) {  }
+                        else { 
+                    %>
+                        <center><h1><small> <%= json[i].date %>
+                    <%
+                        } 
+                    %>
+            </div>
+
+            <% for ( var x = 0; x < json.length; x++ ) { %>
+
+            <div class="col-xs-12 col-sm-10 col-md-3">
+                <div class="thumbnail">
+                    <img style="height: 180px" src="<%= json[x].img %>" alt="...">
+                    <div class="caption">
+                        <h4><%= json[x].title %></h4>
+                        <div class="row catsal">
+                            <small>
+                                <p class="col-sm-8"><em><%= json[x].category %></em></p>
+                            </small>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <small><p class="desc_teaser"><%= json[x].teaser %></p></small>
+                            </div>
+                        </div>
+                        <div class='row'>
+                            <div class="col-xs-6">
+                                <a href="Job/Details/<%= json[x].id %>" class="btn btn-primary btn-sm" role="button">View More</a>
+                            </div>
+                            <div class="col-xs-6">
+                                <p class="pull-right"><em><%= json[x].view_count %> views</em></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+<%= json[x] %>
+        </div> <!-- END -->
+    <% cur = json[i].date } %>
+
+
+</div>
+
+</div>
+<% include ../templates/footer %>
