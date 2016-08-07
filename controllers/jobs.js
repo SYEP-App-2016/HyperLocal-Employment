@@ -60,6 +60,7 @@ router.get('/:id/:jb_position', function(req, res){
 });
 */
 
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated() && req.user.roleID == 1) return next();
     res.redirect('/');
