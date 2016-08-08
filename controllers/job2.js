@@ -19,11 +19,11 @@ router.get('/Check', function(req, res){
 
 
 router.get('/Add', isLoggedIn, function(req, res){
-    
+
     Company.find({acc_id: req.user._id}, function(err, comp){
         res.render('Job/add', {user: req.user, company: comp});
     });
-    
+
 });
 
 
@@ -58,7 +58,7 @@ router.post('/Add', function(req, res){
 
         res.redirect('Job');
      });
-    
+
 });
 
 
@@ -84,7 +84,7 @@ router.get('/', function(req, res){
             collection.push(j);
         }
 
-        res.render('Job/index', { 
+        res.render('Job/index', {
             user: req.user, results: JSON.stringify( collection ) });
     });
 });
@@ -93,7 +93,7 @@ router.get('/Details/:id', function(req, res){
     Job.findOne({ _id: new ObjectId(req.params.id) }, function(err, data){
 
         // UPDATE VIEW COUNT BEFORE RESPONSE
-        // NEXT UPDATE ASYNC METHOD  
+        // NEXT UPDATE ASYNC METHOD
         try {
             Job.findOneAndUpdate(
                 { _id: new ObjectId(data._id) },
