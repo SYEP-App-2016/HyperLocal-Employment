@@ -1,10 +1,11 @@
-<% include ./templates/header %>
+<% include ../templates/header %> 
+
 
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-sm-4">
-                <img class="picture" src="<%= results.company.logo %>">
+                <img class="picture" src="====results.logo====  ">
             </div>
             <div class="col-sm-8">
                 <h1>APPLE</h1>
@@ -19,46 +20,48 @@
             <center><h1>History</h1></center>
         </div>
         <div class="panel-body">
-            <p><%= results.company.history %></p>
+            <p>   =====results.history====    </p>
         </div>
     </div>
     <div class="col-sm-12">
-        <center><h1 class="page-header">Jobs<small class="pull-right"><em><%= results.jobs.length %> results</em></small></h1></center>
+        <center><h1 class="page-header">Jobs<small class="pull-right">
+            <em>====results.jobs.length===== results</em>
+        </small></h1></center>
         <div class="row">
-        <% for(var i = results.jobs.length - 1; i >= 0; i-- ){ %>
+        =====for(var i = results.jobs.length - 1; i >= 0; i-- ){ =====
             <div class="col-xs-12 col-sm-4">
                 <div class="thumbnail">
-                    <img style="height: 180px" src="<%= results.jobs[0].logo %>" alt="...">
+                    <img style="height: 180px" src=" ====results.jobs[0].logo==== " alt="...">
                     <div class="caption">
-                        <h4><%= results.jobs[i].jb_position %></h4>
+                        <h4> ==== results.jobs[i].jb_position==== </h4>
                         <div class="row catsal">
                             <small>
-                                <p class="col-sm-8"><em><%= results.jobs[i].catergory %></em></p>
-                                <p class="col-sm-4"><em>$<%= results.jobs[i].pay_rt %>/<%= results.jobs[i].sal %></em></p>
+                                <p class="col-sm-8"><em>====results.jobs[i].catergory==== </em></p>
+                                <p class="col-sm-4"><em>$==== results.jobs[i].pay_rt==== /==== results.jobs[i].sal==== </em></p>
                             </small>
                         </div>
                         <br>
-                        <small><p class="desc_teaser"><%= results.jobs[i].jb_desc_teaser %></p></small>
+                        <small><p class="desc_teaser">====results.jobs[i].jb_desc_teaser====  </p></small>
                         <div class='row'>
                             <div class="col-sm-3">
-                                <a href="/<%= results.jobs[i]._id%>/<%= results.jobs[i].jb_position %>" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
+                                <a href="/====results.jobs[i]._id%>/====results.jobs[i].jb_position====  " class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
                             </div>
                             <form method="post" action="\removeJob" class="col-sm-3">
-                                <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>">
+                                <input type="hidden" name="job_id" value="====results.jobs[i]._id====  ">
                                 <button class="btn btn-lg btn-success fa fa-pencil"></button>
                             </form>
                             <form method="post" action="\removeJob" class="col-sm-3">
-                                <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>">
+                                <input type="hidden" name="job_id" value="====results.jobs[i]._id====  ">
                                 <button class="btn btn-lg btn-danger fa fa-trash"></button>
                             </form>
                             <div class="col-sm-3">
-                                <p class="pull-right"><em><%= results.jobs[i].view_count %> views</em></p>
+                                <p class="pull-right"><em>====results.jobs[i].view_count====   views</em></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <%}%>
+            ====}====
         </div>
             <div class="page-header"><h3 class="pull-left">Want to post a new job?</h3> <a href="/Add" class="pull-right btn btn-lg btn-primary fa fa-plus"></a></div>
         </div>

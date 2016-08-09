@@ -1,12 +1,13 @@
 var express = require('express'),
     router = express.Router(),
-    Company = require('../models/company');
+    Company = require('../models/company'),
+    ObjectId = require("mongoose").Types.ObjectId;
 
 // CRUD
 
 // CREATE
 router.get('/Add', function(req, res){
-    res.render('newCompany', {
+    res.render('Business/add', {
         user: req.user
     });
 });
@@ -47,17 +48,35 @@ router.get('/', function(req, res){
 
 // RETRIEVE - 1
 router.get('/Details/:id', function(req, res){
-    Company.findOne({acc_id: req.params._id}, function(err, company){
+    Company.find({_id: new ObjectId( req.params.id) }, function(err, company){
+
+        console.log(company);
+
+        res.render('Business/detail', {
+            user: req.user, results: company
+        });
+    });
+});
+
+
+
+// UPDATE ??
+router.get('/Edit:id', function(req, res){
+    
+    Company.find({}, function(err, company){
         res.render('Business/index', {
             user: req.user, company: company
         });
     });
 });
 
-// UPDATE ??
-
-
 // DELETE - 1??
 
+
+
+// TEST
+function processUpload(){
+    
+}
 
 module.exports = router;
