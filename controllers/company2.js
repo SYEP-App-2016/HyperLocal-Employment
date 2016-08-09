@@ -2,7 +2,6 @@ var express = require('express'),
     router = express.Router(),
     Company = require('../models/company');
 
-
 // CRUD
 
 // CREATE
@@ -24,7 +23,7 @@ router.post('/Add', function(req, res){
         company_zip_code: req.body.company_zip_code,
         logo: req.body.logo,
         url: req.body.url,
-        acc_id: req.user._id,
+        // acc_id: req.user._id,
         history: req.body.history
     });
 
@@ -33,7 +32,7 @@ router.post('/Add', function(req, res){
         console.log('New Company Added!');
     });
 
-    res.redirect('/company');
+    res.redirect('Details/' + newCompany._id);
 });
 
 
@@ -47,14 +46,13 @@ router.get('/', function(req, res){
 });
 
 // RETRIEVE - 1
-router.get('Details/:id', function(req, res){
-    Company.findOne({acc_id: req.user._id}, function(err, company){
-        res.render('company', {
+router.get('/Details/:id', function(req, res){
+    Company.findOne({acc_id: req.params._id}, function(err, company){
+        res.render('Business/index', {
             user: req.user, company: company
         });
     });
 });
-
 
 // UPDATE ??
 

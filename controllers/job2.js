@@ -11,21 +11,16 @@ var ObjectId = require('mongoose').Types.ObjectId;
 // TEST METHOD
 // GET DATA BY ID NEEDS -> require('mongoose').Types.ObjectId;
 router.get('/Check', function(req, res){
-
      Company.find({ _id: new ObjectId('57a4e3307d8f51bc0d26dd12') }, function(err, d){
          console.log(d);
      });
 });
 
-
 router.get('/Add', isLoggedIn, function(req, res){
-
     Company.find({acc_id: req.user._id}, function(err, comp){
         res.render('Job/add', {user: req.user, company: comp});
     });
-
 });
-
 
 router.post('/Add', function(req, res){
     // console.log(req.body.req_skills);

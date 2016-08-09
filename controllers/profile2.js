@@ -12,14 +12,12 @@ router.get('/Profile', isLoggedIn, function(req, res){
     if(req.user.roleID == 1){res.redirect('/company');}
     //res.render('profile', {user: req.user});
     var o = {edu: [],vol: [],exp: [],usr: {}};
-
     User.findOne({acc_id: req.user.id}, function(err, user){
         if(err) throw err;
         console.log(user);
         o.usr = user;
         getEducation();
     });
-
     function getEducation(){
         Education.find({profile_id: req.params.id}, function(err, edu){
             if(err) throw err;
@@ -43,7 +41,6 @@ router.get('/Profile', isLoggedIn, function(req, res){
                 results: o,
                 user: req.user
             });
-            console.log(o);
         })
     }
 

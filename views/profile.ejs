@@ -1,6 +1,6 @@
 <% include ./templates/header %>
 <div class="container">
-
+    <% console.log(results) %>
     <div class="header">
         <h1> Profile Page<h1/>
         </div>
@@ -11,10 +11,11 @@
                 </div>
                 <div class="col-sm-8 col-md-9">
                     <div class="right">
-                        <h1><%= results.usr.f_name %> <%= results.usr.l_name %></h1>
-                        <h3><small><em><%= results.usr.address %></em></small></h3>
-                        <p><u>Phone Number:</u> <%= results.usr.cell %></p>
-                        <p><u>Email Address:</u> <%= results.usr.email %></p>
+                        <% console.log(user) %>
+                        <h1><%= user.f_name %> <%= user.l_name %></h1>
+                        <!-- <h3><small><em><%= user.address %></em></small></h3> -->
+                        <p><u>Home:</u> <%= user.home %></p>
+                        <p><u>Email Address:</u> <%= user.email %></p>
                     </div>
                 </div>
             </div>
@@ -110,7 +111,7 @@
                                     <% for(var i = 0; i < results.exp.length; i++){ %>
                                         <div class="panel panel-default">
                                             <div class="panel-body">
-                                                <p> <u>Company Name/Job Title:</u></p>
+                                                <p> <u>results.exp[i].company.company_name/results.exp[i].jb_position:</u></p>
                                                 <p><i> Description</i></p>
                                                 <p>MONTH/YEAR-MONTH/YEAR, LOCATION</p>
                                                 <div class="row">
