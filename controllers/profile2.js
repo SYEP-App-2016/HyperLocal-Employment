@@ -4,6 +4,50 @@ var express = require('express'),
     Experience = require('../models/experience.js'),
     Education = require('../models/education.js'),
     Volunteer = require('../models/volunteer.js');
+    // MOVED FROM REGISTRATION
+    passport = require('passport'),
+    Account = require('../models/account'),
+    Company = require('../models/company');
+
+router.get('/Signup', function(req, res){
+    res.render('Member/signup', {message: req.flash('signupMessage'), user: req.user});
+});
+
+router.post('/Signup', passport.authenticate('local-signup', {
+    successRedirect: 'Member/newUser',
+    failureRedirect: 'Member/register',
+    failureFlash: true
+}));
+
+
+router.get('/Login', function(req, res){
+    res.render('Member/login', { message: req.flash('loginMessage'), user: req.user} );
+});
+
+router.post('/Login', passport.authenticate('local-login', {
+    failureRedirect: '/login',
+    failureFlash: true
+}), function(req, res){
+    if(req.user.roleID == 0){
+        User.findOne({acc_id: req.user._id}, function(err, user){
+            if(!user){res.redirect('/newUser');}
+            else{res.redirect('/profile');}
+        });
+    } else if(req.user.roleID == 1){
+        Company.findOne({acc_id: req.user._id}, function(err, company){
+            if(!company){res.redirect('/newCompany');}
+            else{res.redirect('/company');}
+        });
+    }
+});
+
+
+router.get('/Logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+})
+
+
 
 
 

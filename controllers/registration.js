@@ -17,7 +17,7 @@ router.post('/Signup', passport.authenticate('local-signup', {
 
 
 router.get('/Login', function(req, res){
-    res.render('login', {message: req.flash('loginMessage'), user: req.user});
+    res.render('login', { message: req.flash('loginMessage'), user: req.user} );
 });
 
 router.post('/Login', passport.authenticate('local-login', {
@@ -38,7 +38,7 @@ router.post('/Login', passport.authenticate('local-login', {
 });
 
 
-router.get('/logout', function(req, res){
+router.get('/Logout', function(req, res){
     req.logout();
     res.redirect('/');
 })

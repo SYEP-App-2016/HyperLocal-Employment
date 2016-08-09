@@ -47,7 +47,7 @@ app.use(fileUpload());
 
 // ALTERNATIVE METHOD
 app.use('/', require('./controllers/index.js'));
-app.use('/Register', require('./controllers/registration.js'));
+// app.use('/Register', require('./controllers/registration.js'));
 app.use('/Business', require('./controllers/company2.js'));
 app.use('/Member', require('./controllers/profile2.js'));
 app.use('/Job', require('./controllers/job2.js'));
