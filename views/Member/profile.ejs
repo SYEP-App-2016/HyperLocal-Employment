@@ -1,4 +1,4 @@
-<% include ./templates/header %>
+<% include ../templates/header %>
 <div class="container">
     <% console.log(results) %>
     <div class="header">
@@ -11,10 +11,11 @@
                 </div>
                 <div class="col-sm-8 col-md-9">
                     <div class="right">
-                        <% console.log(user) %>
-                        <h1><%= user.f_name %> <%= user.l_name %></h1>
+                        <% console.log(results) %>
+                        egrsgpn
+                        <h1><%= results.usr.f_name %> <%= results.usr.l_name %></h1>
                         <!-- <h3><small><em><%= user.address %></em></small></h3> -->
-                        <p><u>Home:</u> <%= user.home %></p>
+                        <p><u>Home:</u> <%= results.usr.home %></p>
                         <p><u>Email Address:</u> <%= user.email %></p>
                     </div>
                 </div>

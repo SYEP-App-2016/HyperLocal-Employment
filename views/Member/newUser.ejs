@@ -1,6 +1,17 @@
-<% include ./templates/header %>
+<% include ../templates/header %>
 <div class="container">
-    <form method="POST" action="newUser">        
+    <form method="POST" action="newUser">
+        <div class="form-group">
+            <label>Basic Information</label>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" name="f_name" placeholder="First Name">
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <input type="text" name="l_name" placeholder="Last Name">
+                </div>
+            </div>
+        </div>
       <div class="form-group">
           <label>Contact Information</label>
           <div class="row">
@@ -9,7 +20,7 @@
                   <select class="form-control" name="contact_type" required>
                     <option>-- Select -- </option>
                     <option>Mobile</option>
-                    <option>Home</option> 
+                    <option>Home</option>
                   </select>
               </div>
               <div class="col-xs-12 col-sm-6">
@@ -17,12 +28,12 @@
               </div>
           </div>
       </div>
-      
+
       <div class="form-group">
           <label>Objective</label>
           <textarea type="text" name="obj" class="form-control" placeholder="Objective" row="3"></textarea>
       </div>
-      
+
       <div class="form-group">
           <label>Job Interests</label>
           <div class="row">
@@ -46,4 +57,4 @@
     </form>
 </div>
 
-<% include ./templates/footer %>
+<% include ../templates/footer %>

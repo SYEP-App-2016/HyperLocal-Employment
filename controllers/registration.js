@@ -6,22 +6,43 @@ var passport = require('passport'),
     router = express.Router();
 
 router.get('/Signup', function(req, res){
-    res.render('signup', {message: req.flash('signupMessage'), user: req.user});
+    res.render('Auth/Signup', {message: req.flash('signupMessage'), user: req.user});
 });
 
 router.post('/Signup', passport.authenticate('local-signup', {
-    successRedirect: '/newUser',
-    failureRedirect: '/register',
+    successRedirect: '/Register/Steps',
+    failureRedirect: '/Register/Signup',
     failureFlash: true
 }));
 
+router.get('/Steps', function(req, res){
+    res.render('member/newUser', {user: req.user});
+});
+
+router.post('/newUser', function(req, res){
+    var newUser = new User({
+        f_name: req.body.f_name,
+        l_name: req.body.l_name,
+        obj: req.body.obj,
+        home: req.body.home,
+        cell: req.body.cell,
+        job_interests: req.body.job_interests,
+        acc_id: req.user._id
+    });
+
+    newUser.save(function(err){
+        if(err) throw err;
+        console.log('User Created!');
+    });
+    res.redirect('/member/profile');
+});
 
 router.get('/Login', function(req, res){
     res.render('auth/login', {message: req.flash('loginMessage'), user: req.user});
 });
 
 router.post('/Login', passport.authenticate('local-login', {
-    failureRedirect: '/login',
+    failureRedirect: 'Login',
     failureFlash: true
 }), function(req, res){
     if(req.user.roleID == 0){
@@ -38,7 +59,7 @@ router.post('/Login', passport.authenticate('local-login', {
 });
 
 
-router.get('/logout', function(req, res){
+router.get('/Logout', function(req, res){
     req.logout();
     res.redirect('/');
 })

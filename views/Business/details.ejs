@@ -6,9 +6,10 @@
                 <img class="picture" src="<%= results.company.logo %>">
             </div>
             <div class="col-sm-8">
+                <% console.log(results.company) %>
                 <h1><%= results.company.company_name %></h1>
-                <h3>Apple street</h3>
-                <h4>url</h4>
+                <h3><%= results.company.company_address %> <%= results.company.company_city%>, <%= results.company.company_state %> <%= results.company.company_zip_code %></h3>
+                <h4><%= results.company.url %></h4>
             </div>
         </div>
     </div>
@@ -43,12 +44,12 @@
                                 <div class="col-sm-3">
                                     <a href="/<%= results.jobs[i]._id%>/<%= results.jobs[i].jb_position %>" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
                                 </div>
-                                <form method="post" action="\removeJob" class="col-sm-3">
-                                    <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>">
+                                <form method="post" action="/Job/Edit/<%= results.jobs[i]._id %>" class="col-sm-3">
+                                    <!-- <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>"> -->
                                     <button class="btn btn-lg btn-success fa fa-pencil"></button>
                                 </form>
-                                <form method="post" action="\removeJob" class="col-sm-3">
-                                    <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>">
+                                <form method="post" action="/Job/Remove/<%= results.jobs[i]._id %>" class="col-sm-3">
+                                    <input type="hidden" name="company_id" value="<%= results.jobs[i].company.company_id %>">
                                     <button class="btn btn-lg btn-danger fa fa-trash"></button>
                                 </form>
                                 <div class="col-sm-3">

@@ -6,7 +6,6 @@ var express = require('express'),
     Volunteer = require('../models/volunteer.js');
 
 
-
 // REDESIGN LOGIC OR MODEL TO CONTAIN EVERYTHING IN ONE DOC
 router.get('/Profile', isLoggedIn, function(req, res){
     if(req.user.roleID == 1){res.redirect('/company');}
@@ -44,6 +43,75 @@ router.get('/Profile', isLoggedIn, function(req, res){
         })
     }
 
+});
+
+router.post('/addExperience', function(req, res){
+    //res.send(dbFunctions.addExperience(req.body));
+    //Remember to include ._id as an hidden field to get user_id
+    var newExperience = new Experience({
+        jb_position: req.body.job_position,
+        jb_description: req.body.job_description,
+        company_name: req.body.company_name,
+        prof_id: req.user._id,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
+    });
+    console.log(newExperience);
+    newExperience.save(function(err){if(err)throw err; console.log('User Experience Added.')});
+    res.redirect('/Member/Profile');
+});
+
+router.post('/addEducation', function(req, res){
+    // res.send(dbFunctions.addEducation(req.body));
+    //Remember to include ._id as an hidden field to get user_id
+    var newEducation = new Education({
+        instit_name: req.body.name_of_institution,
+        deg: req.body.degree,
+        yr_grad: req.body.year_graduated,
+        f_study: req.body.field_of_study,
+        instit_type: req.body.type_of_institution,
+        prof_id: req.user._id
+    });
+    newEducation.save(function(err){if(err)throw err; console.log('User Education Added.')});
+    res.redirect('/Member/Profile');
+});
+
+router.post('/addVolunteerExp', function(req, res){
+    // res.send(dbFunctions.addVolunteer(req.body));
+    //Remember to include ._id as an hidden field to get user_id
+    var newVolunteer = new Volunteer({
+        org: req.body.organization,
+        role: req.body.role,
+        cause: req.body.cause,
+        desc: req.body.description,
+        prof_id: req.user._id
+    });
+    newVolunteer.save(function(err){if(err)throw err; console.log('User Volunteer Added.')});
+    res.redirect('/Member/Profile');
+});
+
+router.post('/removeExperience', function(req, res){
+    Experience.findOneAndRemove({_id: req.body.exp_id}, function(err){
+        if(err){console.log(err)}
+        else{console.log('User Experience Removed!')}
+        res.redirect('/Member/Profile');
+    });
+});
+
+router.post('/removeEducation', function(req, res){
+    Education.findOneAndRemove({_id: req.body.edu_id}, function(err){
+        if(err){console.log(err)}
+        else{console.log('User Education Removed!')}
+        res.redirect('/Member/Profile');
+    });
+});
+
+router.post('/removeVolunteerExp', function(req, res){
+    Volunteer.findOneAndRemove({_id: req.body.vol_id}, function(err){
+        if(err){console.log(err)}
+        else{console.log('User Volunteer Removed!')}
+        res.redirect('/Member/Profile');
+    });
 });
 
 function isLoggedIn(req, res, next){

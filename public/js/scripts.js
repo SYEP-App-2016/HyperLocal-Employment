@@ -37,6 +37,13 @@ $(document).ready(function(){
       options.append($("<option/>").val(catergories[i]).text(catergories[i]));
     }
 
+    $('.edu_edit').click(function(){
+        var indx = $(this).attr('value');
+    var a = $(this).parents()[3];
+    
+    // $(b).append('<div class="panel panel-default">Here I am!!!</div>');
+    // a[3].append('Here I am!');
+    });
 
 });
 

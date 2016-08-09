@@ -67,11 +67,12 @@ router.get('/', function(req, res){
         for(var i = 0; i < data.length; i++){
             var j = {
                 id: data[i]._id,
-                title: data[i].jp_position,
+                title: data[i].jb_position,
                 img: data[i].logo,
                 teaser: data[i].jb_desc_teaser,
                 date: moment(data[i].date_posted ).format("MMMM do YYYY"),
-                category: data[i].category,
+                category: data[i].catergory,
+                views: data[i].view_count,
                 company: {
                     id: data[i]._id,
                     name: data[i].company.company_name
@@ -110,6 +111,13 @@ router.get('/Details/:id', function(req, res){
     });
 });
 
+router.post('/Remove/:id', function(req, res){
+    Job.findOneAndRemove({_id: req.params.id}, function(err){
+        if(err){console.log(err)}
+        else{console.log('Job Removed!')}
+        res.redirect('/Business/Details/'+req.body.company_id);
+    });
+});
 
 // MOVE TO GLOBAL UTILITY FUNC TO REQUIRE
 function isLoggedIn(req, res, next){

@@ -7,20 +7,21 @@ var express = require('express'),
 
 // CREATE
 router.get('/Add', function(req, res){
-    res.render('newCompany', {
+    res.render('Business/add', {
         user: req.user
     });
 });
 
 router.post('/Add', function(req, res){
-    var logos = ['Logo_TV_2015.png', 'apple.jpg', 'twitter/png'];
+    var logos = ['Logo_TV_2015.png', 'apple.jpg', 'twitter.png'];
     if(req.body.logo == '') req.body.logo = '/img/company_logos/' + logos[Math.floor(Math.random()*logos.length)];
-
+    console.log(req.body);
     var newCompany = new Company({
         company_name: req.body.company_name,
-        company_address: req.body.address,
-        company_city: req.body.city,
-        company_state: req.body.state,
+        company_address: req.body.company_address,
+        company_address_2: req.body.company_address_2,
+        company_city: req.body.company_city,
+        company_state: req.body.company_state,
         company_zip_code: req.body.company_zip_code,
         logo: req.body.logo,
         url: req.body.url,
