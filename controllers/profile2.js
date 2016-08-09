@@ -37,7 +37,7 @@ router.get('/Profile', isLoggedIn, function(req, res){
     function getExperience(userResult, eduResult, volResult){
         Experience.find({profile_id: req.params.id}, function(err, exp){
             o.exp = exp;
-            res.render('profile', {
+            res.render('Member/index', {
                 results: o,
                 user: req.user
             });

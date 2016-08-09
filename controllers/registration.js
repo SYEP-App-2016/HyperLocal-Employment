@@ -17,7 +17,7 @@ router.post('/Signup', passport.authenticate('local-signup', {
 
 
 router.get('/Login', function(req, res){
-    res.render('login', {message: req.flash('loginMessage'), user: req.user});
+    res.render('auth/login', {message: req.flash('loginMessage'), user: req.user});
 });
 
 router.post('/Login', passport.authenticate('local-login', {
@@ -27,7 +27,7 @@ router.post('/Login', passport.authenticate('local-login', {
     if(req.user.roleID == 0){
         User.findOne({acc_id: req.user._id}, function(err, user){
             if(!user){res.redirect('/newUser');}
-            else{res.redirect('/profile');}
+            else{res.redirect('/Member/Profile');}
         });
     } else if(req.user.roleID == 1){
         Company.findOne({acc_id: req.user._id}, function(err, company){

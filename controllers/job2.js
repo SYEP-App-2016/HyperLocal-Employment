@@ -16,17 +16,18 @@ router.get('/Check', function(req, res){
      });
 });
 
-router.get('/Add', isLoggedIn, function(req, res){
-    Company.find({acc_id: req.user._id}, function(err, comp){
+router.get('/:company_id/Add', function(req, res){
+    Company.findOne({_id: req.params.company_id}, function(err, comp){
         res.render('Job/add', {user: req.user, company: comp});
+        console.log(comp);
     });
 });
 
-router.post('/Add', function(req, res){
+router.post('/:company_id/Add', function(req, res){
     // console.log(req.body.req_skills);
-
+    console.log('reached');
     // RETURNS AS ARRAY / GETS 1ST INDEX
-    Company.findOne({ _id: new ObjectId(req.body.company_id[0]) }, function(err, data){
+    Company.findOne({ _id: req.params.company_id }, function(err, data){
          var newJob = new Job({
             jb_position: req.body.jb_position,
             jb_desc: req.body.jb_desc,
@@ -41,7 +42,7 @@ router.post('/Add', function(req, res){
             url: req.body.url,
             logo: req.body.logo,
             company: {
-                company_id: data.company_id,
+                company_id: req.params.company_id,
                 company_name: data.company_name
             }
         });
@@ -51,7 +52,7 @@ router.post('/Add', function(req, res){
             console.log('New Job Posted!');
         });
 
-        res.redirect('Job');
+        res.redirect('/Job');
      });
 
 });
@@ -101,14 +102,18 @@ router.get('/Details/:id', function(req, res){
         catch(e) {
             console.log(e);
         }
-        res.send({user: req.user, results: data});
+        // res.send({user: req.user, results: data});
+        res.render('Job/details', {
+            user: req.user,
+            results: data
+        });
     });
 });
 
 
 // MOVE TO GLOBAL UTILITY FUNC TO REQUIRE
 function isLoggedIn(req, res, next){
-    if(req.isAuthenticated() && req.user.roleID == 1) return next();
+    if(req.isAuthenticated()) return next();
     res.redirect('/');
 }
 

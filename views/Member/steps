@@ -1,0 +1,49 @@
+<% include ./templates/header %>
+<div class="container">
+    <form method="POST" action="newUser">
+      <div class="form-group">
+          <label>Contact Information</label>
+          <div class="row">
+              <div class="col-xs-12 col-sm-6">
+                  <!-- input type="Number" name="home" pattern=".{10,10}" class="form-control" placeholder="Home Phone Number"/ -->
+                  <select class="form-control" name="contact_type" required>
+                    <option>-- Select -- </option>
+                    <option>Mobile</option>
+                    <option>Home</option>
+                  </select>
+              </div>
+              <div class="col-xs-12 col-sm-6">
+                  <input type="text" name="contact_number" class="form-control" placeholder="123-456-7890"/>
+              </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label>Objective</label>
+          <textarea type="text" name="obj" class="form-control" placeholder="Objective" row="3"></textarea>
+      </div>
+
+      <div class="form-group">
+          <label>Job Interests</label>
+          <div class="row">
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories">
+                  </select>
+              </div>
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories2">
+                  </select>
+              </div>
+              <div class="col-xs-12 col-md-4">
+                  <select name="job_interests[]" class="form-control" id="catergories3">
+                  </select>
+              </div>
+          </div>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary pull-right">Continue</button>
+      </div>
+    </form>
+</div>
+
+<% include ./templates/footer %>

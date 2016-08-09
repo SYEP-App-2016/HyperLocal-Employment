@@ -1,6 +1,7 @@
 var express = require('express'),
     router = express.Router(),
-    Company = require('../models/company');
+    Company = require('../models/company'),
+    Job = require('../models/job');
 
 // CRUD
 
@@ -47,9 +48,15 @@ router.get('/', function(req, res){
 
 // RETRIEVE - 1
 router.get('/Details/:id', function(req, res){
-    Company.findOne({acc_id: req.params._id}, function(err, company){
-        res.render('Business/index', {
-            user: req.user, company: company
+    var o = {}
+    Company.findOne({_id: req.params.id}, function(err, company){
+        o.company = company;
+        Job.find({'company.company_id': req.params.id}, function(err, jobs){
+            o.jobs = jobs;
+            console.log(jobs);
+            res.render('Business/details', {
+                user: req.user, results: o
+            });
         });
     });
 });
