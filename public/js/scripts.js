@@ -40,10 +40,50 @@ $(document).ready(function(){
     $('.edu_edit').click(function(){
         var indx = $(this).attr('value');
     var a = $(this).parents()[3];
-    
+
     // $(b).append('<div class="panel panel-default">Here I am!!!</div>');
     // a[3].append('Here I am!');
     });
+
+    var p = 1;
+
+    $("#btnNext").click(function(){
+
+      $(".step-" + p).hide();
+      $(".step-" + (++p)).show();
+
+      if(p > 3) {
+        $(this).hide();
+        checkPage();
+        return;
+      }
+    });
+
+    $("#btnBack").click(function(){
+
+      if(p < 3 || p === 1) {
+        $(this).hide();
+      }
+
+      $(".step-" + p).hide();
+      $(".step-" + (--p)).show();
+
+      if(p > 3) {
+        $(this).show();
+        $("#btnNext").show();
+        checkPage();
+        return;
+      }
+
+    });
+
+    function checkPage() {
+      if(p > 3) {
+        $("#btnNextPage").show();
+      } else {
+        $("#btnNextPage").hide();
+      }
+    }
 
 });
 

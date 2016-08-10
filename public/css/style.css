@@ -83,3 +83,43 @@ p{
 .hidden-form{
     display: none;
 }
+
+.step {
+  height: 500px;
+  /*width: 600px;*/
+  /*border: solid 1px black;*/
+  padding: 5px;
+}
+
+.step-2, .step-3, .step-4 {
+  display: none;
+}
+
+/*.step-2 {
+  border: solid 1px red;
+}
+
+.step-3 {
+  border: solid 1px yellow;
+}
+
+.step-4 {
+  border: solid 1px yellow;
+}*/
+
+.dvContent {
+  height: 87%;
+  /*border: solid 1px gray;*/
+}
+
+#dvButtons {
+  /*width: 600px;*/
+}
+
+#btnNextPage {
+  display: none;
+}
+
+.dvContent{
+  padding: 10px;
+}

@@ -1,0 +1,29 @@
+<div class="col-xs-12 col-sm-8">
+    <center>Volunteer Experience</center>
+    <div class="form-group">
+      <label>Organization</label>
+      <input type="text" ng-model="org" class="form-control" name="organization" placeholder="Name of Organization">
+    </div>
+    <div class="form-group">
+      <label>Role</label>
+      <input type="text" ng-model="role" class="form-control" name="role" placeholder="Role">
+    </div>
+    <div class="form-group">
+      <label>Cause</label>
+      <input type="text" ng-model="cause" class="form-control" name="cause" placeholder="Cause">
+    </div>
+    <div class="row">
+        <div class="btn btn-primary" ng-click="addVol()">Add Vol</div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-4">
+    <div ng-repeat="item in vol" class="panel panel-default">
+        <div class="panel-body">
+            {{item.org}}
+            {{item.role}}
+            {{item.cause}}
+            {{item.desc}}
+            <span class="fa fa-times pull-right" ng-click="removeItem($index, experience)"></span>
+        </div>
+    </div>
+</div>

@@ -16,24 +16,11 @@ router.post('/Signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/Steps', function(req, res){
-    res.render('member/newUser', {user: req.user});
+    res.render('member/steps', {user: req.user});
 });
 
 router.post('/newUser', function(req, res){
-    var newUser = new User({
-        f_name: req.body.f_name,
-        l_name: req.body.l_name,
-        obj: req.body.obj,
-        home: req.body.home,
-        cell: req.body.cell,
-        job_interests: req.body.job_interests,
-        acc_id: req.user._id
-    });
-
-    newUser.save(function(err){
-        if(err) throw err;
-        console.log('User Created!');
-    });
+    res.send(req.body);
     res.redirect('/member/profile');
 });
 

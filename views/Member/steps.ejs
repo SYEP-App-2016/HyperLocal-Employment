@@ -1,0 +1,48 @@
+<% include ../templates/header %>
+
+<div class="container" ng-controller="stepsCtrl">
+
+    <!-- SECTION FOR STEP PROGRESS -->
+    <div class="dvSteps">
+
+      <!-- TEMPLATE FOR STEPS -->
+      <div class="step step-1">
+        <div class="dvContent">
+          <% include steps/basicForm.ejs %>
+        </div>
+      </div>
+
+      <div class="step step-2">
+        <div class="dvContent">
+            <% include steps/eduForm.ejs %>
+        </div>
+      </div>
+
+      <div class="step step-3">
+        <div class="dvContent">
+            <% include steps/expForm.ejs %>
+        </div>
+      </div>
+
+      <div class="step step-4">
+        <div class="dvContent">
+            <% include steps/volForm.ejs %>
+        </div>
+      </div>
+    </div>
+
+    <button id="btnNext" class="btn btn-default pull-right">Next</button>
+    <button id="btnBack" class="btn btn-default pull-right">Back</button>
+    <form method="post" action="/Register/newUser">
+        <input type="hidden" name="userData" value="{{user}}"/>
+        <input type="hidden" name="eduData" value="{{edu}}"/>
+        <input type="hidden" name="expData" value="{{exp}}"/>
+        <input type="hidden" name="volData" value="{{vol}}"/>
+        <!-- SECTION FOR BUTTONS -->
+        <div id="dvButtons">
+          <button id="btnNextPage" class="btn btn-default pull-right">Continue</button>
+        </div>
+    </form>
+  </div>
+</body>
+</html>

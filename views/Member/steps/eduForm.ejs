@@ -1,0 +1,34 @@
+<div class="col-xs-12 col-sm-8">
+    <center>Education</center>
+    <div class="form-group">
+      <label>Name of Institution</label>
+      <input type="text" ng-model="name_of_instit" class="form-control" name="name_of_institution" placeholder="Name of Institution">
+    </div>
+    <div class="form-group">
+      <label>Degree</label>
+      <input type="text" ng-model="degree" class="form-control" name="degree" placeholder="Degree">
+    </div>
+    <div class="form-group">
+      <label>Field of Study</label>
+      <input type="text" ng-model="f_study" class="form-control" name="field_of_study" placeholder="Field of Study">
+    </div>
+    <div class="form-group">
+      <label>Year Graduated</label>
+      <input type="number" ng-model="year" class="form-control" name="year_graduated" placeholder="1990">
+    </div>
+    <div class="row">
+        <div class="btn btn-primary" ng-click="addEdu()">Add Edu</div>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-4">
+    <div ng-repeat="item in edu" class="panel panel-default">
+        <div class="panel-body">
+            {{item.instit_name}}
+            {{item.deg}}
+            {{item.yr_grad}}
+            {{item.f_study}}
+            {{item.prof_id}}
+            <span class="fa fa-times pull-right" ng-click="removeItem($index, experience)"></span>
+        </div>
+    </div>
+</div>
