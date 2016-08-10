@@ -15,7 +15,7 @@ var userSchema = new Schema({
     created_at: Date,
     updated_at: Date,
     acc_id: {type: mongoose.Schema.Types.ObjectId, ref: 'account'}
-})
+});
 
 userSchema.pre('save', function(next){
     var currentDate = moment();

@@ -33,7 +33,12 @@ app.use(bodyParser.json({type: 'application/vdn.api+json'}));
 app.use(cookieParser());
 app.use(methodOverride());
 
-app.use(session({secret: 'ihatecats', resave: true, saveUninitialized: false}));
+app.use(session({ 
+    secret: 'ihatecats', 
+    resave: true, 
+    saveUninitialized: false
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
@@ -47,6 +52,7 @@ app.use(fileUpload());
 
 // ALTERNATIVE METHOD
 app.use('/', require('./controllers/index.js'));
+app.use('/Admin', require('./controllers/admin.js'));
 app.use('/Business', require('./controllers/company2.js'));
 app.use('/Member', require('./controllers/profile2.js'));
 app.use('/Job', require('./controllers/job2.js'));

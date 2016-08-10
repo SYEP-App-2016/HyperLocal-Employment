@@ -49,9 +49,6 @@ router.get('/', function(req, res){
 // RETRIEVE - 1
 router.get('/Details/:id', function(req, res){
     Company.find({_id: new ObjectId( req.params.id) }, function(err, company){
-
-        console.log(company);
-
         res.render('Business/detail', {
             user: req.user, results: company
         });
@@ -61,11 +58,11 @@ router.get('/Details/:id', function(req, res){
 
 
 // UPDATE ??
-router.get('/Edit:id', function(req, res){
+router.get('/Edit/:id', function(req, res){
     
-    Company.find({}, function(err, company){
-        res.render('Business/index', {
-            user: req.user, company: company
+    Company.find({_id: new ObjectId( req.params.id) }, function(err, company){
+        res.render('Business/edit', {
+            user: req.user, results: company
         });
     });
 });
@@ -75,8 +72,5 @@ router.get('/Edit:id', function(req, res){
 
 
 // TEST
-function processUpload(){
-    
-}
 
 module.exports = router;

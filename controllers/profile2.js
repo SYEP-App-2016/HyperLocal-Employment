@@ -25,18 +25,18 @@ router.get('/Login', function(req, res){
 });
 
 router.post('/Login', passport.authenticate('local-login', {
-    failureRedirect: '/login',
+    failureRedirect: 'login',
     failureFlash: true
 }), function(req, res){
     if(req.user.roleID == 0){
         User.findOne({acc_id: req.user._id}, function(err, user){
-            if(!user){res.redirect('/newUser');}
-            else{res.redirect('/profile');}
+            if(!user){res.redirect('Member/newUser');}
+            else{res.redirect('Member/profile');}
         });
     } else if(req.user.roleID == 1){
         Company.findOne({acc_id: req.user._id}, function(err, company){
-            if(!company){res.redirect('/newCompany');}
-            else{res.redirect('/company');}
+            if(!company){res.redirect('/Business/add');}
+            else{ res.redirect('Business/company'); }
         });
     }
 });
@@ -46,7 +46,6 @@ router.get('/Logout', function(req, res){
     req.logout();
     res.redirect('/');
 })
-
 
 
 
