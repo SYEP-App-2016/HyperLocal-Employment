@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     Company = require('../models/company'),
-    Job = require('../models/job');
+    Job = require('../models/job'),
+    ObjectId = require("mongoose").Types.ObjectId;
 
 // CRUD
 
@@ -58,14 +59,30 @@ router.get('/Details/:id', function(req, res){
             res.render('Business/details', {
                 user: req.user, results: o
             });
+    // Company.find({_id: new ObjectId( req.params.id) }, function(err, company){
+    //     res.render('Business/detail', {
+    //         user: req.user, results: company
+    //     });
+    // });
         });
     });
 });
 
-// UPDATE ??
 
+// UPDATE ??
+router.get('/Edit/:id', function(req, res){
+
+    Company.find({_id: new ObjectId( req.params.id) }, function(err, company){
+        res.render('Business/edit', {
+            user: req.user, results: company
+        });
+    });
+});
 
 // DELETE - 1??
 
+
+
+// TEST
 
 module.exports = router;

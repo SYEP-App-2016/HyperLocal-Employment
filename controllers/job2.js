@@ -11,9 +11,10 @@ var ObjectId = require('mongoose').Types.ObjectId;
 // TEST METHOD
 // GET DATA BY ID NEEDS -> require('mongoose').Types.ObjectId;
 router.get('/Check', function(req, res){
-     Company.find({ _id: new ObjectId('57a4e3307d8f51bc0d26dd12') }, function(err, d){
+     Company.find({ _id: new ObjectId('57a4e3307d8f51bc0d26dd12') },'_id company_name', function(err, d){
          console.log(d);
      });
+     res.send("1");
 });
 
 router.get('/:company_id/Add', function(req, res){
@@ -24,8 +25,6 @@ router.get('/:company_id/Add', function(req, res){
 });
 
 router.post('/:company_id/Add', function(req, res){
-    // console.log(req.body.req_skills);
-    console.log('reached');
     // RETURNS AS ARRAY / GETS 1ST INDEX
     Company.findOne({ _id: req.params.company_id }, function(err, data){
          var newJob = new Job({
