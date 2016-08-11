@@ -42,7 +42,7 @@
                             <small><p class="desc_teaser"><%= results.jobs[i].jb_desc_teaser %></p></small>
                             <div class='row'>
                                 <div class="col-sm-3">
-                                    <a href="/<%= results.jobs[i]._id%>/<%= results.jobs[i].jb_position %>" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
+                                    <a href="/Job/Details/<%= results.jobs[i]._id %>" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
                                 </div>
                                 <form method="post" action="/Job/Edit/<%= results.jobs[i]._id %>" class="col-sm-3">
                                     <!-- <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>"> -->

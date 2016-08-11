@@ -1,8 +1,18 @@
 var app = angular.module('myApp', []);
 app.controller('stepsCtrl', ['$scope', function($scope){
+    $scope.user = {};
     $scope.edu = [];
     $scope.exp = [];
     $scope.vol = [];
+    $scope.addUser = function(){
+        $scope.user = {
+            f_name: $scope.f_name,
+            l_name: $scope.l_name,
+            obj: $scope.objective,
+            cell: $scope.cell,
+            home: $scope.home
+        }
+    }
     $scope.addEdu = function(){
         $scope.edu.push({
             instit_name: $scope.name_of_instit,

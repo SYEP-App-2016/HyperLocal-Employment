@@ -2,10 +2,10 @@
     <label>Basic Information</label>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <input class="form-control" type="text" name="f_name" placeholder="First Name">
+            <input class="form-control" ng-model="f_name" type="text" name="f_name" placeholder="First Name">
         </div>
         <div class="col-xs-12 col-sm-6">
-            <input class="form-control" type="text" name="l_name" placeholder="Last Name">
+            <input class="form-control" ng-model="l_name" type="text" name="l_name" placeholder="Last Name">
         </div>
     </div>
 </div>
@@ -14,21 +14,22 @@
   <div class="row">
       <div class="col-xs-12 col-sm-6">
           <!-- input type="Number" name="home" pattern=".{10,10}" class="form-control" placeholder="Home Phone Number"/ -->
-          <select class="form-control" name="contact_type" required>
-            <option>-- Select -- </option>
-            <option>Mobile</option>
-            <option>Home</option>
+          <select class="form-control" ng-model="contact" name="contact_type" required>
+            <option selected>-- Select -- </option>
+            <option value="mobile">Mobile</option>
+            <option value="home">Home</option>
           </select>
       </div>
       <div class="col-xs-12 col-sm-6">
-          <input type="text" name="contact_number" class="form-control" placeholder="123-456-7890"/>
+          <input ng-if="contact == 'mobile'" type="text" ng-model="cell" name="contact_number" class="form-control" placeholder="Mobile Cell Phone"/>
+          <input ng-if="contact == 'home'" type="text" ng-model="home" name="contact_number" class="form-control" placeholder="Home Phone"/>
       </div>
   </div>
 </div>
 
 <div class="form-group">
   <label>Objective</label>
-  <textarea type="text" name="obj" class="form-control" placeholder="Objective" row="3"></textarea>
+  <textarea ng-model="objective" type="text" name="obj" class="form-control" placeholder="Objective" row="3"></textarea>
 </div>
 
 <div class="form-group">

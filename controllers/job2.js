@@ -2,25 +2,19 @@ var express = require('express'),
     router = express.Router(),
     Job = require('../models/job'),
     Company = require('../models/company'),
-    moment = require('moment');
+    moment = require('moment'),
+    utility = require('../utility');
 
 // FIND BETTER WAY OF INCLUDING
 var ObjectId = require('mongoose').Types.ObjectId;
 
-
-// TEST METHOD
-// GET DATA BY ID NEEDS -> require('mongoose').Types.ObjectId;
-router.get('/Check', function(req, res){
-     Company.find({ _id: new ObjectId('57a4e3307d8f51bc0d26dd12') },'_id company_name', function(err, d){
-         console.log(d);
-     });
-     res.send("1");
-});
-
+///////////////////////////////////////////////////////////////////////
+//////// CREATE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
 router.get('/:company_id/Add', function(req, res){
+    //Returns an Array / Gets 1st index
     Company.findOne({_id: req.params.company_id}, function(err, comp){
-        res.render('Job/add', {user: req.user, company: comp});
-        console.log(comp);
+        res.render('Job/add', {user: req.user, company: comp}); //Renders Job addition page
     });
 });
 
@@ -45,17 +39,20 @@ router.post('/:company_id/Add', function(req, res){
                 company_name: data.company_name
             }
         });
-
+        //Saves Newly created Job
         newJob.save(function(err){
             if(err) throw err;
             console.log('New Job Posted!');
         });
 
-        res.redirect('/Job');
+        res.redirect('/Job'); //After Job is added User is redirected to Job listing page
      });
 
 });
 
+///////////////////////////////////////////////////////////////////////
+//////// READ   //////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 router.get('/', function(req, res){
 
@@ -85,6 +82,7 @@ router.get('/', function(req, res){
     });
 });
 
+//Jobs Details Page
 router.get('/Details/:id', function(req, res){
     Job.findOne({ _id: new ObjectId(req.params.id) }, function(err, data){
 
@@ -110,6 +108,22 @@ router.get('/Details/:id', function(req, res){
     });
 });
 
+///////////////////////////////////////////////////////////////////////
+////////  UPDATE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+//Update get coming soon
+
+router.post('/Update/:id', function(req, res){
+    Job.findOneAndUpdate({_id: req.params.id}, req.body, function(err){
+        if(err){console.log(err)}
+        else{console.log('Job Updated!')}
+    });
+});
+
+///////////////////////////////////////////////////////////////////////
+////////  DELETE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
 router.post('/Remove/:id', function(req, res){
     Job.findOneAndRemove({_id: req.params.id}, function(err){
         if(err){console.log(err)}
@@ -118,11 +132,13 @@ router.post('/Remove/:id', function(req, res){
     });
 });
 
-// MOVE TO GLOBAL UTILITY FUNC TO REQUIRE
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()) return next();
-    res.redirect('/');
-}
-
+// TEST METHOD
+// GET DATA BY ID NEEDS -> require('mongoose').Types.ObjectId;
+router.get('/Check', function(req, res){
+     Company.find({ _id: new ObjectId('57a4e3307d8f51bc0d26dd12') },'_id company_name', function(err, d){
+         console.log(d);
+     });
+     res.send("1");
+});
 
 module.exports = router;

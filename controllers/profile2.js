@@ -9,82 +9,9 @@ var express = require('express'),
     Account = require('../models/account'),
     Company = require('../models/company');
 
-router.get('/Signup', function(req, res){
-    res.render('Member/signup', {message: req.flash('signupMessage'), user: req.user});
-});
-
-router.post('/Signup', passport.authenticate('local-signup', {
-    successRedirect: 'Member/newUser',
-    failureRedirect: 'Member/register',
-    failureFlash: true
-}));
-
-
-router.get('/Login', function(req, res){
-    res.render('Member/login', { message: req.flash('loginMessage'), user: req.user} );
-});
-
-router.post('/Login', passport.authenticate('local-login', {
-    failureRedirect: 'login',
-    failureFlash: true
-}), function(req, res){
-    if(req.user.roleID == 0){
-        User.findOne({acc_id: req.user._id}, function(err, user){
-            if(!user){res.redirect('Member/newUser');}
-            else{res.redirect('Member/profile');}
-        });
-    } else if(req.user.roleID == 1){
-        Company.findOne({acc_id: req.user._id}, function(err, company){
-            if(!company){res.redirect('/Business/add');}
-            else{ res.redirect('Business/company'); }
-        });
-    }
-});
-
-
-router.get('/Logout', function(req, res){
-    req.logout();
-    res.redirect('/');
-})
-
-// REDESIGN LOGIC OR MODEL TO CONTAIN EVERYTHING IN ONE DOC
-router.get('/Profile', isLoggedIn, function(req, res){
-    if(req.user.roleID == 1){res.redirect('/company');}
-    //res.render('profile', {user: req.user});
-    var o = {edu: [],vol: [],exp: [],usr: {}};
-    User.findOne({acc_id: req.user.id}, function(err, user){
-        if(err) throw err;
-        console.log(user);
-        o.usr = user;
-        getEducation();
-    });
-    function getEducation(){
-        Education.find({profile_id: req.params.id}, function(err, edu){
-            if(err) throw err;
-            o.edu = edu;
-            getVolunteerExperience();
-        });
-    };
-
-    function getVolunteerExperience(){
-        Volunteer.find({profile_id: req.params.id}, function(err, vol){
-            if(err) throw err;
-            o.vol = vol;
-            getExperience();
-        });
-    };
-
-    function getExperience(userResult, eduResult, volResult){
-        Experience.find({profile_id: req.params.id}, function(err, exp){
-            o.exp = exp;
-            res.render('Member/index', {
-                results: o,
-                user: req.user
-            });
-        })
-    }
-
-});
+///////////////////////////////////////////////////////////////////////
+////////  CREATE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 router.post('/addExperience', function(req, res){
     //res.send(dbFunctions.addExperience(req.body));
@@ -130,6 +57,105 @@ router.post('/addVolunteerExp', function(req, res){
     newVolunteer.save(function(err){if(err)throw err; console.log('User Volunteer Added.')});
     res.redirect('/Member/Profile');
 });
+
+///////////////////////////////////////////////////////////////////////
+////////  READ  //////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+// REDESIGN LOGIC OR MODEL TO CONTAIN EVERYTHING IN ONE DOC
+router.get('/Profile', isLoggedIn, function(req, res){
+    if(req.user.roleID == 1){res.redirect('/company');}
+    //res.render('profile', {user: req.user});
+    var o = {edu: [],vol: [],exp: [],usr: {}};
+    console.log(req.user.id);
+    User.findOne({acc_id: req.user.id}, function(err, user){
+        if(err) throw err;
+        console.log(user);
+        o.usr = user;
+        getEducation();
+    });
+    function getEducation(){
+        Education.find({prof_id: o.usr._id}, function(err, edu){
+            if(err) throw err;
+            o.edu = edu;
+            getVolunteerExperience();
+        });
+    };
+
+    function getVolunteerExperience(){
+        Volunteer.find({prof_id: o.usr._id.id}, function(err, vol){
+            if(err) throw err;
+            o.vol = vol;
+            getExperience();
+        });
+    };
+
+    function getExperience(userResult, eduResult, volResult){
+        Experience.find({prof_id: o.usr._id.id}, function(err, exp){
+            o.exp = exp;
+            res.render('Member/index', {
+                results: o,
+                user: req.user
+            });
+            console.log(o);
+        })
+    }
+
+});
+
+///////////////////////////////////////////////////////////////////////
+////////  UPDATE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
+
+router.get('/Update/Experience/:id', function(req, res){
+    Experience.findOne({_id: req.params.id}, function(err, exp){
+        if(err){console.log(err)}
+        res.render('Member/edit', {
+            user: req.user,
+            results: exp
+        })
+    })
+})
+
+router.post('/Update/Experience/:id', function(req, res){
+    Experience.findOneAndUpdate({_id: req.params.id}, req.body, function(err){
+        if(err){console.log(err)}
+        else{console.log('User Experience Updated!')}
+        res.redirect('/Member/Profile');
+    });
+});
+
+router.get('/Update/Education/:id', function(req, res){
+    Education.findOne({_id: req.params.id}, function(req, res){
+        if(err){console.log(err)}
+        res.render('Member/edit', {
+            user: req.user,
+            results: exp
+        })
+    })
+})
+
+router.post('/Update/Education/:id', req.body, function(req, res){
+    Education.findOneAndUpdate({_id: req.params.id}, req.body, function(err){
+        if(err){console.log(err)}
+        else{console.log('User Education Updated!')}
+        res.redirect('/Member/Profile');
+    })
+})
+
+router.get('/Update/VolunteerExperience/:id', req.body, function())
+
+router.post('/Update/VolunteerExperience/:id', req.body, function(req, res){
+    Volunteer.findOneAndUpdate({_id: req.params.id}, req.body, function(err){
+        if(err){console.log(err)}
+        else{console.log('User.Education Updated!')}
+        res.redirect('/Member/Profile');
+    })
+})
+
+///////////////////////////////////////////////////////////////////////
+////////  DELETE //////////////////////////////////////////////
+///////////////////////////////////////////////////////
 
 router.post('/removeExperience', function(req, res){
     Experience.findOneAndRemove({_id: req.body.exp_id}, function(err){

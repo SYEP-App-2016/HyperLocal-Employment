@@ -3,7 +3,8 @@ var passport = require('passport'),
     User = require('../models/user'),
     Company = require('../models/company'),
     express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    utility = require('../utility');
 
 router.get('/Signup', function(req, res){
     res.render('Auth/Signup', {message: req.flash('signupMessage'), user: req.user});
@@ -20,7 +21,16 @@ router.get('/Steps', function(req, res){
 });
 
 router.post('/newUser', function(req, res){
-    res.send(req.body);
+    userData = JSON.parse(req.body.userData);
+    var newUser = new User(userData);
+    newUser.acc_id = req.user._id;
+    newUser.save(function(err){
+        if(err){console.log(err)}
+        else{console.log('User Created!')}
+    });
+    utility.addUserExperience(JSON.parse(req.body.expData), newUser);
+    utility.addUserEducation(JSON.parse(req.body.eduData), newUser);
+    utility.addUserVolunteerExperience(JSON.parse(req.body.volData), newUser);
     res.redirect('/member/profile');
 });
 
