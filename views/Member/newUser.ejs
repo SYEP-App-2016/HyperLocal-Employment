@@ -1,17 +1,16 @@
 <% include ../Templates/header %>
-
-<div class="container" ng-controller="userCtrl">
+<div class="container" ng-controller="stepsCtrl">
     <div class="row">
-        <div ng-if="page == 1">
+        <div ng-show="page == 1">
             <% include Steps/basicForm.ejs %>
         </div>
-        <div ng-if="page == 2">
+        <div ng-show="page == 2">
             <% include Steps/eduForm.ejs %>
         </div>
-        <div ng-if="page == 3">
+        <div ng-show="page == 3">
             <% include Steps/expForm.ejs %>
         </div>
-        <div ng-if="page == 4">
+        <div ng-show="page == 4">
             <% include Steps/volForm.ejs %>
         </div>
     </div>

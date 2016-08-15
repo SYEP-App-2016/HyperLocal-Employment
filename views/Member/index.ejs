@@ -1,1 +1,28 @@
-Here!
+<% include ../templates/header %>
+<div class="container" ng-init="refresh()" ng-controller="userCtrl">
+   <div class="header">
+      <h1>
+      Profile Page
+      <h1/>
+   </div>
+   <div class="panel panel-default">
+      <div class="panel-body row">
+         <div class="col-sm-3">
+            <img class="img-responsive" src="http://www.fixflo.com/wp-content/uploads/2016/06/Duncan.png" alt="...">
+         </div>
+         <div class="col-sm-8 col-md-9">
+            <div class="right">
+               <h1>{{ usr.f_name }} {{ usr.l_name }}</h1>
+               <p><u>Home:</u> {{ usr.home }}</p>
+               <p><u>Cell: </u>{{ usr.cell }}</p>
+               <p><u>Email Address:</u> {{ usr.email }}</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <% include ./Forms/eduForm %>
+   <% include ./Forms/expForm %>
+   <% include ./Forms/volForm %>
+</div>
+</body>
+</html>

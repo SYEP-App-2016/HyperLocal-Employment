@@ -1,19 +1,17 @@
 app.controller('jobCtrl', ['$scope', '$http', '$window', '$location', function($scope, $http, $window, $location){
+    //Gathers json from server
     $scope.refresh = function(){
-        // console.log($location.absUrl());
-        $http.get('/Job/Details/' + $location.absUrl().split('/')[5] + '/data.json')
-            .success(function(data){
-                $scope.data = data;
-                console.log(data);
+        $http.get('/Job/Details/' + $location.absUrl().split('/')[5] + '/data.json') //gets Json data from /Job/Details/:id/data.json
+            .success(function(data){ //Executes on success
+                $scope.data = data; //sets $scope.data to newly aquired data, allows access to it on details page
             })
-            .error(function(data){
+            .error(function(data){ //Executes on Err, may lead to err page in future
                 console.log('Error: ' + data);
             });
     }
 
-    $scope.currentDate = "";
-
     $scope.postJob = function(){
+        //Creates an Object of Job info
         var data = {
             jb_position: $scope.jb_position,
             jb_desc: $scope.desc,
@@ -24,13 +22,12 @@ app.controller('jobCtrl', ['$scope', '$http', '$window', '$location', function($
             sal: $scope.sal,
             catergory: $scope.catergory
         }
-
+        //Sends obj data to server, Job gets created and saved
         $http.post('/Job/Add/' + $location.absUrl().split('/')[5], data)
-            .success(function(data){
-                console.log('reached!');
-                $window.location.href = data;
+            .success(function(data){//Executes on success
+                $window.location.href = data; //Redirects user to Business Profile page
             })
-            .error(function(data){
+            .error(function(data){//Executes on Err
                 $window.location.href = '/Err';
             });
     }

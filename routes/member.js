@@ -12,7 +12,7 @@ router.get('/Profile', utility.isLoggedIn, function(req, res){
 });
 
 router.get('/Profile.json', function(req, res){
-    var o;
+    var o = {};
     User.findOne({acc_id: req.user._id}, function(err, user){
         if(err) throw err;
         o.usr = user;
@@ -37,6 +37,7 @@ router.get('/Profile.json', function(req, res){
     function getExperience(userResult, eduResult, volResult){
         Experience.find({prof_id: o.usr._id.id}, function(err, exp){
             o.exp = exp;
+            console.log(o);
             res.json(o);
         })
     }
@@ -61,5 +62,17 @@ router.post('/newUser', function(req, res){
     // utility.addAllUserVolunteerExperience(JSON.parse(req.body.volData), newUser);
     res.send(newUser);
 });
+
+router.post('/addEdu', function(req, res){
+    utility.addAllUserEducation(req.body.eduData, req.body.usr);
+});
+
+router.post('/addExp', function(req, res){
+    utility.addAllUserExperience(req.body.expData, req.body.usr);
+});
+
+router.post('/addVol', function(req, res){
+    utility.addAllUserVolunteerExperience(req.body.volData, req.body.usr);
+})
 
 module.exports = router;

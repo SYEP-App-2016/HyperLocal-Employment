@@ -48,7 +48,7 @@ app.use(fileUpload());
 // ALTERNATIVE METHOD
 app.use('/', require('./routes/index.js'));
 app.use('/Auth', require('./routes/auth.js'));
-// app.use('/Admin', require('./routes/admin.js'));
+app.use('/Admin', require('./routes/admin.js'));
 app.use('/Business', require('./routes/company.js'));
 app.use('/Member', require('./routes/member.js'));
 app.use('/Job', require('./routes/job.js'));

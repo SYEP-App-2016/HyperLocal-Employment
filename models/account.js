@@ -1,7 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt-nodejs');
-    // passportLocalMongoose = require('passport-local-mongoose');
 
 var accountSchema = new Schema({
     email: {type: String, required: true},
@@ -18,5 +17,4 @@ accountSchema.methods.validPassword = function(password){
     return bcrypt.compareSync(password, this.password);
 };
 
-// accountSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Account', accountSchema);;

@@ -1,0 +1,73 @@
+<div class="row">
+   <div class="col-xs-12 col-sm-3">
+      <center>
+         <h1><small>Work Experience</small></h1>
+      </center>
+   </div>
+   <div class="col-sm-9 col-xs-12">
+      <div ng-if="exp.length == 0" class="panel panel-default">
+         <div class="panel-body">
+            You have no Work Experience posted. Would you like to add one?
+            <div ng-click="show('Exp')" class="btn btn-primary pull-right fa fa-plus expBtn"></div>
+         </div>
+      </div>
+      <div ng-repeat="e in exp" class="panel panel-default">
+         <div class="panel-body">
+            <p><u>{{ e.company_name }} / {{ e.jb_position }}</u></p>
+            <p><i>Description</i></p>
+            <p>MONTH/YEAR-MONTH/YEAR, LOCATION</p>
+            <div class="row">
+               <div class="col-xs-2 col-xs-offset-10">
+                  <div class="fa fa-pencil btn btn-lg btn-success"></div>
+                  <form method="POST" action="removeExperience" style="display: inline-block">
+                     <input type="hidden" value="{{ e._id }}" name="exp_id"/>
+                     <button class="fa fa-trash btn-lg btn-danger"></button>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div ng-if="exp.length > 0" class="panel panel-default">
+         <div class="panel-body">
+            <div ng-click="show('Exp')" class="btn btn-primary pull-right fa fa-plus expBtn"></div>
+         </div>
+      </div>
+      <div ng-if="dExp" class="panel panel-default expForm">
+         <div class="panel-body">
+            <form novalidate ng-submit="addExp()">
+               <div class="form-group">
+                  <label>Company Name</label>
+                  <input type="text" class="form-control" name="company_name" placeholder="Company Name">
+               </div>
+               <div class="form-group">
+                  <label>Job Position</label>
+                  <input type="text" class="form-control" name="job_position" placeholder="Job Position">
+               </div>
+               <div class="form-group">
+                  <label>Job Description</label>
+                  <textarea type="text" class="form-control" name="job_description" placeholder="Password"></textarea>
+               </div>
+               <div class="form-group">
+                  <!-- <div class="col-lg-12"> -->
+                  <label>Start - End Date</label>
+                  <!-- </div> -->
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <input type="date" class="form-control" name="start_date">
+                     </div>
+                     <div class="col-lg-6">
+                        <input type="date" class="form-control" name="end_date">
+                     </div>
+                  </div>
+               </div>
+               <input type="hidden" name="usr_id" value="{{ results.usr._id }}">
+               <div class="row">
+                  <div class="col-lg-12">
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
