@@ -6,12 +6,12 @@ var mongoose = require('mongoose'),
 
 var companySchema = new Schema({
     acc_id: mongoose.Schema.Types.ObjectId,
-    company_name: String,
-    company_address: String,
-    company_address_2: String,
-    company_city: String,
-    company_state: String,
-    company_zip_code: String,
+    name: String,
+    address: String,
+    address_2: String,
+    city: String,
+    state: String,
+    zip: String,
     logo: String,
     history: String,
     url: String

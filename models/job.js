@@ -8,9 +8,9 @@ var jobSchema = new Schema({
     jb_desc_teaser: String,
     jb_contact: String,
     req_skills: [String],
-    date_posted: Date,
+    date_posted: String,
     deadline: Date,
-    job_type: String, //Full-time, part-time or internship
+    jb_type: String, //Full-time, part-time or internship
     pay_rt: Number,
     sal: String,
     url: String,
@@ -18,8 +18,8 @@ var jobSchema = new Schema({
     applicants: [mongoose.Schema.Types.ObjectId],
     logo: String,
     company: {
-        company_id: mongoose.Schema.Types.ObjectId,
-        company_name: String
+        _id: mongoose.Schema.Types.ObjectId,
+        name: String
     },
     view_count: {type: Number, default: 0}
 });

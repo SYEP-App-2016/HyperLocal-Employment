@@ -1,63 +1,44 @@
-<% include ../templates/header %>
-
-
-<div class="container">
+<% include /Templates/header %>
+<div class="container" ng-controller="mainCtrl" ng-init="refresh()">
     <div class="page-header">
         <h1>Job Listing</h1>
     </div>
-
-    <%
-        var json = JSON.parse(results),
-        cur = "";
-        for(var i = 0; i < json.length; i++ ) {
-    %>
-        <div class="row page-header">
-            <div class="col-xs-12 col-sm-12 col-md-12 bg-success">
-                    <%
-                        if(cur === json[i].date ) {  }
-                        else {
-                    %>
-                        <center><h1><small> <%= json[i].date %>
-                    <%
-                        }
-                    %>
-            </div>
-
-            <% for ( var x = 0; x < json.length; x++ ) { %>
-                <% if(json[x].date == json[i].date){ %>
-            <div class="col-xs-12 col-sm-10 col-md-3">
-                <div class="thumbnail">
-                    <img style="height: 180px" src="<%= json[x].img %>" alt="...">
-                    <div class="caption">
-                        <h4><%= json[x].title %></h4>
-                        <div class="row catsal">
-                            <small>
-                                <p class="col-sm-8"><em><%= json[x].category %></em></p>
-                            </small>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <small><p class="desc_teaser"><%= json[x].teaser %></p></small>
+    <div ng-repeat="(key, value) in data">
+        <div style="margin-bottom: 10px" class="col-xs-12 col-sm-12 col-md-12 bg-success">
+            <center ng-if="item.date_posted != currentDate"><h1><small>{{key}}</small></h1></center>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-3" ng-repeat="item in value">
+                <div>
+                    <div class="thumbnail"  ng-init="currentDate = item.date_posted">
+                        <img style="height: 180px" src="{{ item.logo}}" alt="...">
+                        <div class="caption">
+                            <h4>{{item.jb_position}}</h4>
+                            <div class="row catsal">
+                                <small>
+                                    <p class="col-sm-8"><em>{{item.catergory}}</em></p>
+                                </small>
                             </div>
-                        </div>
-                        <div class='row'>
-                            <div class="col-xs-6">
-                                <a href="Job/Details/<%= json[x].id %>" class="btn btn-primary btn-sm" role="button">View More</a>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <small><p class="desc_teaser">{{item.desc_teaser}}</p></small>
+                                </div>
                             </div>
-                            <div class="col-xs-6">
-                                <p class="pull-right"><em><%= json[x].views %> views</em></p>
+                            <div class='row'>
+                                <div class="col-xs-6">
+                                    <a href="Job/Details/{{item._id}}" class="btn btn-primary btn-sm" role="button">View More</a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <p class="pull-right"><em>{{item.view_count}} views</em></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <% }} %>
-<%= json[x] %>
-        </div> <!-- END -->
-    <% cur = json[i].date } %>
-
-
+        </div>
+    </div>
+    </div>
 </div>
-
-</div>
-<% include ../templates/footer %>
+</body>
+</html>

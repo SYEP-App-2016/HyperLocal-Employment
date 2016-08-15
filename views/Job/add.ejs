@@ -1,46 +1,36 @@
-<% include ../templates/header %>
-<div class="container">
-
+<% include ../Templates/header %>
+<div class="container" ng-controller="jobCtrl">
     <div class="page-header">
         <center><h1>Post a new Job</h1></center>
     </div>
-    <form action="/Job/<%= company._id %>/Add" method="POST">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <select name="company_id" class="form-control">
-                    <% for(var i = 0; i < company.length; i++){  %>
-                        <option value="<%= company[i]._id %>"> <%= company[i].company_name %> </option>
-                    <% } %>
-                </select>
-            </div>
-        </div>
+    <form novalidate ng-submit="postJob()">
         <div class="row">
             <div class="form-group col-xs-12 col-sm-8">
                 <label>Job Position</label>
-                <input type="text" class="form-control" name="jb_position" placeholder="Job Position" required>
+                <input type="text" class="form-control" ng-model="jb_position" placeholder="Job Position" required>
             </div>
             <div class="form-group col-xs-12 col-sm-4">
                 <label>Job Catergory</label>
-                <select name="catergory" class="form-control" id="catergories">
+                <select ng-model="catergory" class="form-control" id="catergories">
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label>Description Teaser</label>
-            <input type="text" class="form-control" name="jb_desc_teaser" placeholder="Job Description" maxlength="100" required>
+            <input type="text" class="form-control" ng-model="jb_desc_teaser" placeholder="Job Description" maxlength="100" required>
         </div>
 
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <label>Description</label>
-                <textarea type="text" class="form-control" name="jb_desc" placeholder="Job Description" required style="resize: none" rows=12></textarea>
+                <textarea type="text" class="form-control" ng-model="jb_desc" placeholder="Job Description" required style="resize: none" rows=12></textarea>
             </div>
 
             <div id="dvSkillsSection" class="col-xs-12 col-sm-6">
                 <label>Required Skills</label>
                 <div class="form-group" data-input="0">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter skill" name="req_skills[]" />
+                        <input type="text" class="form-control" placeholder="Enter skill" ng-model="req_skills" />
                         <span class="input-group-btn">
                             <button id="btnNewSkill" type="button" class="btn btn-default" aria-label="Left Align" onclick="createInput()">
                                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -57,10 +47,10 @@
                 <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                 <div class="input-group">
                     <div class="input-group-addon">$</div>
-                    <input type="Number" name="pay_rt" class="form-control" placeholder="Amount" min="9">
+                    <input type="Number" ng-model="pay_rt" class="form-control" placeholder="Amount" min="9">
                     <div class="input-group-addon">/</div>
                     <!-- <input type="text" class="form-control" id="inputGroupSuccess3" aria-describedby="inputGroupSuccess3Status"> -->
-                    <select name="sal" class="form-control" id="catergories">
+                    <select ng-model="sal" class="form-control" id="catergories">
                         <option value="hr" selected>hr</option>
                         <option value="yr">yr</option>
                     </select>
@@ -69,17 +59,16 @@
 
             <div class="form-group col-xs-12 col-sm-8">
                 <label>Deadline</label>
-                <% d = new Date(); y = d.getFullYear(); month = d.getMonth() + 1; dy = d.getDate(); d = y + '-' + month + '-' + dy %>
-                <input type="date" class="form-control" min="<%= d %>" name="deadline" required>
+                <input type="date" class="form-control" ng-model="deadline" required>
             </div>
         </div>
 
         <div class="form-group">
             <label>Contact Information</label>
-            <input type="text" class="form-control" name="contact" placeholder="Contact">
+            <input type="text" class="form-control" ng-model="contact" placeholder="Contact">
         </div>
-        <input type="hidden" value="<%= company.logo %>" name="logo">
-        <input type="hidden" value="<%= company._id %>" name="company_id">
+        <input type="hidden" value="" ng-model="logo">
+        <input type="hidden" value="" ng-model="company_id">
         <button type="submit" class="btn btn-primary pull-right">Post New Job</button>
         <a href="/company" class="btn btn-default pull-left">Cancel</a>
     </form>

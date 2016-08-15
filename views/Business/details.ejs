@@ -1,15 +1,14 @@
 <% include ../templates/header %>
-<div class="container">
+<div class="container" ng-controller="businessCtrl" ng-init="refresh()">
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="col-sm-4">
-                <img class="picture" src="<%= results.company.logo %>">
+                <img class="picture" src="{{data.c.logo}}">
             </div>
             <div class="col-sm-8">
-                <% console.log(results.company) %>
-                <h1><%= results.company.company_name %></h1>
-                <h3><%= results.company.company_address %> <%= results.company.company_city%>, <%= results.company.company_state %> <%= results.company.company_zip_code %></h3>
-                <h4><%= results.company.url %></h4>
+                <h1>APPLE</h1>
+                <h3>Apple street</h3>
+                <h4>url</h4>
             </div>
         </div>
     </div>
@@ -19,52 +18,50 @@
             <center><h1>History</h1></center>
         </div>
         <div class="panel-body">
-            <p><%= results.company.history %></p>
+            <p>{{data.c.history}}</p>
         </div>
     </div>
     <div class="col-sm-12">
-        <center><h1 class="page-header">Jobs<small class="pull-right"><em><%= results.jobs.length %> results</em></small></h1></center>
+        <center><h1 class="page-header">Jobs<small class="pull-right">
+            <em>{{ data.jobs.length }} results</em>
+        </small></h1></center>
         <div class="row">
-
-            <% for(var i = results.jobs.length - 1; i >= 0; i-- ){ %>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="thumbnail">
-                        <img style="height: 180px" src="<%= results.jobs[0].logo %>" alt="...">
-                        <div class="caption">
-                            <h4><%= results.jobs[i].jb_position %></h4>
-                            <div class="row catsal">
-                                <small>
-                                    <p class="col-sm-8"><em><%= results.jobs[i].catergory %></em></p>
-                                    <p class="col-sm-4"><em>$<%= results.jobs[i].pay_rt %>/<%= results.jobs[i].sal %></em></p>
-                                </small>
+            <div class="col-xs-12 col-sm-4" ng-repeat="job in data.jobs">
+                <div class="thumbnail">
+                    <img style="height: 180px" src=" {{job.logo}}" alt="...">
+                    <div class="caption">
+                        <h4>{{job.jb_position}}</h4>
+                        <div class="row catsal">
+                            <small>
+                                <p class="col-sm-8"><em>{{job.catergory}}</em></p>
+                                <p class="col-sm-4"><em>${{job.pay_rt}}/{{job.sal}}</em></p>
+                            </small>
+                        </div>
+                        <br>
+                        <small><p class="desc_teaser">{{job.jb_desc_teaser}}</p></small>
+                        <div class='row'>
+                            <div class="col-sm-3">
+                                <a href="/Job/Details/{{job._id}}" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
                             </div>
-                            <br>
-                            <small><p class="desc_teaser"><%= results.jobs[i].jb_desc_teaser %></p></small>
-                            <div class='row'>
-                                <div class="col-sm-3">
-                                    <a href="/Job/Details/<%= results.jobs[i]._id %>" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
-                                </div>
-                                <form method="post" action="/Job/Edit/<%= results.jobs[i]._id %>" class="col-sm-3">
-                                    <!-- <input type="hidden" name="job_id" value="<%= results.jobs[i]._id %>"> -->
-                                    <button class="btn btn-lg btn-success fa fa-pencil"></button>
-                                </form>
-                                <form method="post" action="/Job/Remove/<%= results.jobs[i]._id %>" class="col-sm-3">
-                                    <input type="hidden" name="company_id" value="<%= results.jobs[i].company.company_id %>">
-                                    <button class="btn btn-lg btn-danger fa fa-trash"></button>
-                                </form>
-                                <div class="col-sm-3">
-                                    <p class="pull-right"><em><%= results.jobs[i].view_count %> views</em></p>
-                                </div>
+                            <form novalidate ng-submit="editJob()" class="col-sm-3">
+                                <input type="hidden" ng-model="job_id" value=>
+                                <button type="submit" class="btn btn-lg btn-success fa fa-pencil"></button>
+                            </form>
+                            <!-- <form novalidate ng-submit="removeJob()" class="col-sm-3"> -->
+                                <!-- <input type="hidden" ng-model="job_id" value="{{job._id}}"> -->
+                                <button ng-click="removeJob(job._id)" class="btn btn-lg btn-danger fa fa-trash"></button>
+                            <!-- </form> -->
+                            <div class="col-sm-3">
+                                <p class="pull-right"><em>{{job.view_count}} views</em></p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <%}%>
-            </div>
-                <div class="page-header"><h3 class="pull-left">Want to post a new job?</h3> <a href="/Job/<%= results.company._id %>/Add" class="pull-right btn btn-lg btn-primary fa fa-plus"></a></div>
             </div>
         </div>
+            <div class="page-header"><h3 class="pull-left">Want to post a new job?</h3> <a href="/Job/Add/{{data.c._id}}" class="pull-right btn btn-lg btn-primary fa fa-plus"></a></div>
+        </div>
     </div>
-
+</div>
 </body>
 </html>

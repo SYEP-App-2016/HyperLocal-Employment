@@ -45,19 +45,14 @@ app.use(flash());
 app.use(fileUpload());
 
 
-// TO MANY REPEATED ROUTES IN SEPARATE FILES
-// REMOVE IN NEXT UPDATE
-// app.use('/', require('./controllers'));
-
-
 // ALTERNATIVE METHOD
-app.use('/', require('./controllers/index.js'));
-app.use('/Register', require('./controllers/registration.js'));
-app.use('/Admin', require('./controllers/admin.js'));
-app.use('/Business', require('./controllers/company2.js'));
-app.use('/Member', require('./controllers/profile2.js'));
-app.use('/Job', require('./controllers/job2.js'));
-app.use('/Classifieds', require('./controllers/listing.js'));
+app.use('/', require('./routes/index.js'));
+app.use('/Auth', require('./routes/auth.js'));
+// app.use('/Admin', require('./routes/admin.js'));
+app.use('/Business', require('./routes/company.js'));
+app.use('/Member', require('./routes/member.js'));
+app.use('/Job', require('./routes/job.js'));
+// app.use('/Classifieds', require('./routes/listing.js'));
 
 
 // WHAT IS USING THIS REQUIRE???

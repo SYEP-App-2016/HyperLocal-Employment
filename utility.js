@@ -8,7 +8,7 @@ module.exports = {
             return next();
         res.redirect('/');
     },
-    addUserEducation: function(eduData, user){
+    addAllUserEducation: function(eduData, user){
         for(var i = 0; i < eduData.length; i++){
             var edu = new Education(eduData[i]);
             edu.prof_id = user._id;
@@ -16,10 +16,9 @@ module.exports = {
                 if(err){console.log(err)}
                 else{console.log('User Education added!')}
             });
-            console.log(edu, '<-----------------');
         }
     },
-    addUserExperience: function(expData, user){
+    addAllUserExperience: function(expData, user){
         for(var i = 0; i < expData.length; i++){
             var exp = new Experience(expData[i]);
             exp.prof_id = user._id;
@@ -27,10 +26,9 @@ module.exports = {
                 if(err){console.log(err)}
                 else{console.log('User Experience added!')}
             });
-            console.log(exp, '<-----------------');
         }
     },
-    addUserVolunteerExperience: function(volData, user){
+    addAllUserVolunteerExperience: function(volData, user){
         for(var i = 0; i < volData.length; i++){
             var vol = new Volunteer(volData[i]);
             vol.prof_id = user._id;
@@ -38,7 +36,6 @@ module.exports = {
                 if(err){console.log(err)}
                 else{console.log('User Volunteer Experience added!')}
             });
-            console.log(vol, '<-----------------');
         }
     }
 };
