@@ -52,6 +52,13 @@
               </li> -->
           </ul>
           <ul class="nav navbar-nav navbar-right">
+              <% if(user){ %>
+                  <li><a href="/Member/Profile">Profile</a></li>
+                  <li><a href="/Auth/Logout">LogOut</a></li>
+              <% } else {%>
+                  <li><a href="/Auth/Login">Login</a></li>
+                  <li><a href="/Auth/Signup">SignUp</a></li>
+              <% } %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

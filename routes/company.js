@@ -19,13 +19,13 @@ router.get('/Details/:id/data.json', function(req, res){
 
 //Renders to Details page
 router.get('/Details/:id/', function(req, res){
-    res.render('Business/details'); //Tells server to render the Details page in the Business folder
+    res.render('Business/details', {user: req.user}); //Tells server to render the Details page in the Business folder
 });
 
 //Add - Get
 //Renders Business/Add page
 router.get('/Add', function(req, res){
-    res.render('Business/add'); //Tells server to render the Add page in the Business folder
+    res.render('Business/add', {user: req.user}); //Tells server to render the Add page in the Business folder
 });
 
 //Add - Post

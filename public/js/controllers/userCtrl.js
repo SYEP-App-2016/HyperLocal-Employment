@@ -43,6 +43,7 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
         console.log(data);
         $http.post('/Member/addEdu', data)
             .success(function(data){
+                console.log('Reached');
                 $scope.show('Edu');
                 refresh();
             })

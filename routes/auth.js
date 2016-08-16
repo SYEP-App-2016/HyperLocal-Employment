@@ -17,7 +17,7 @@ router.post('/Signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/Steps', function(req, res){
-    res.render('member/newUser');
+    res.render('member/newUser', {user: req.user});
 });
 
 router.post('/newUser', function(req, res){
@@ -35,7 +35,7 @@ router.post('/newUser', function(req, res){
 });
 
 router.get('/Login', function(req, res){
-    res.render('auth/login', {message: req.flash('loginMessage')});
+    res.render('auth/login', {message: req.flash('loginMessage'), user: req.user});
 });
 
 router.post('/Login', passport.authenticate('local-login', {

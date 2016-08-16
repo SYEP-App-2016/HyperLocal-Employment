@@ -8,7 +8,7 @@ var express = require('express'),
 
 router.get('/Profile', utility.isLoggedIn, function(req, res){
     console.log(req.user);
-    res.render('Member/index');
+    res.render('Member/index', {user: req.user});
 });
 
 router.get('/Profile.json', function(req, res){

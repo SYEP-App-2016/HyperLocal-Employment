@@ -9,7 +9,7 @@ module.exports = {
         res.redirect('/');
     },
     addEducation: function(data){
-        var newEdu = new Education(data.edu);
+        var newEdu = new Education(data.eduData);
         newEdu.prof_id = data.usr._id;
         newEdu.save(function(err){
             if(err){console.log(err)}
@@ -27,12 +27,13 @@ module.exports = {
         }
     },
     addExperience: function(data){
-        var newExp = new Experience(data.exp);
-        newExp.prof_id = data.usr._id;
-        newExp.save(function(err){
-            if(err){console.log(err)}
-            else{console.log('User Education added')}
-        });
+        console.log(data.exp);
+        // var newExp = new Experience(data.exp);
+        // newExp.prof_id = data.usr._id;
+        // newExp.save(function(err){
+        //     if(err){console.log(err)}
+        //     else{console.log('User Education added')}
+        // });
     },
     addAllUserExperience: function(expData, user){
         for(var i = 0; i < expData.length; i++){
