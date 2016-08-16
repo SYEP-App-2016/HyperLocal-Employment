@@ -13,6 +13,20 @@ router.get('/Details/:id', function(req, res){
 //Sends Json data on job details to server
 router.get('/Details/:id/data.json', function(req, res){
     Job.findOne({_id: req.params.id}, function(err, data){ //Finds the Job
+        // UPDATE VIEW COUNT BEFORE RESPONSE
+        // NEXT UPDATE ASYNC METHOD
+        try {
+            Job.findOneAndUpdate(
+                { _id: req.params.id}, //new ObjectId(data._id) },
+                { $inc: { view_count: data.view_count, "view_count": 1 } },
+                function(err, results) {
+                    console.log(results);
+                }
+            );
+        }
+        catch(e) { //Catches Err and logs it
+            console.log(e);
+        }
         res.json(data); //Sends Job info to Job Ctrl
     });
 });

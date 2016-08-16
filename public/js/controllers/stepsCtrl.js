@@ -1,5 +1,40 @@
 app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $http, $window){
 
+    // $scope.jobInterest = 'Agriculture, Food and Natural Resources';
+    $scope.jobInterests = [];
+    $scope.err_message = 'Job Interest already Exists';
+    $scope.same = false;
+
+    $scope.addJobInterests = function(){
+        var interest = $scope.jobInterest;
+        $scope.same = false;
+        for(var i = 0; i < $scope.jobInterests.length; i++){
+            if($scope.jobInterests[i] == interest)
+                $scope.same = true;
+        }
+        if(!$scope.same){
+            $scope.jobInterests.push(interest);
+            $scope.same = false;
+        }
+    }
+
+    $scope.skills = [];
+    $scope.err_message2 = 'Skill already inputted';
+    $scope.same2 = false;
+
+    $scope.addSkill = function(){
+        var skill = $scope.usrSkill;
+        $scope.same2 = false;
+        for(var i = 0; i < $scope.skills.length; i++){
+            if($scope.skills[i] == skill);
+                $scope.same2 = true;
+        }
+        if(!scope.same2){
+            $scope.skills.push(skill);
+            $scope.same2 = false;
+        }
+    }
+
     $scope.edu = [];
     $scope.exp = [];
     $scope.vol = [];
@@ -38,7 +73,8 @@ app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $htt
             last: $scope.usrData.last,
             obj: $scope.usrData.obj,
             cell: $scope.usrData.cell,
-            home: $scope.usrData.home
+            home: $scope.usrData.home,
+            job_interests: $scope.jobInterests
         }
 
         var data = {

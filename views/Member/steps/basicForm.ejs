@@ -1,49 +1,69 @@
 <div class="form-group">
-    <label>Basic Information</label>
-    <div class="row">
-        <div class="col-xs-12 col-sm-6">
-            <input class="form-control" ng-model="usrData.first" type="text" placeholder="First Name">
-        </div>
-        <div class="col-xs-12 col-sm-6">
-            <input class="form-control" ng-model="usrData.last" type="text" placeholder="Last Name">
-        </div>
-    </div>
+   <label>Basic Information</label>
+   <div class="row">
+      <div class="col-xs-12 col-sm-6">
+         <input class="form-control" ng-model="usrData.first" type="text" placeholder="First Name">
+      </div>
+      <div class="col-xs-12 col-sm-6">
+         <input class="form-control" ng-model="usrData.last" type="text" placeholder="Last Name">
+      </div>
+   </div>
 </div>
 <div class="form-group">
-  <label>Contact Information</label>
-  <div class="row">
+   <label>Contact Information</label>
+   <div class="row">
       <div class="col-xs-12 col-sm-6">
-          <select class="form-control" ng-model="contact" required>
+         <select class="form-control" ng-model="contact" required>
             <option value="mobile">Mobile</option>
             <option value="home">Home</option>
-          </select>
+         </select>
       </div>
       <div class="col-xs-12 col-sm-6">
-          <input ng-if="contact == 'mobile'" type="text" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
-          <input ng-if="contact == 'home'" type="text" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
+         <input ng-if="contact == 'mobile'" type="text" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
+         <input ng-if="contact == 'home'" type="text" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
       </div>
-  </div>
+   </div>
 </div>
-
 <div class="form-group">
-  <label>Objective</label>
-  <input ng-model="usrData.obj" type="text" class="form-control" placeholder="Objective" row="3"></input>
+   <label>Objective</label>
+   <input ng-model="usrData.obj" type="text" class="form-control" placeholder="Objective" row="3"></input>
 </div>
-
-<div class="form-group">
-  <label>Job Interests</label>
-  <div class="row">
-      <div class="col-xs-12 col-md-4">
-          <select name="job_interests[]" class="form-control" id="catergories">
-          </select>
+<div class="form-group col-xs-12 col-sm-6">
+   <label>Job Interests <span ng-show="same" style="color: red"><small>{{err_message}}</small></span></label>
+   <div class="row">
+      <div class="col-xs-10">
+         <select ng-model="jobInterest" class="form-control" id="catergories">
+         </select>
       </div>
-      <div class="col-xs-12 col-md-4">
-          <select name="job_interests[]" class="form-control" id="catergories2">
-          </select>
+      <div class="col-xs-2">
+         <div ng-disabled="jobInterests.length > 2" ng-click="addJobInterests()" class="btn btn-primary fa fa-plus"></div>
       </div>
-      <div class="col-xs-12 col-md-4">
-          <select name="job_interests[]" class="form-control" id="catergories3">
-          </select>
+      <div class="col-xs-12">
+         <div ng-repeat="interest in jobInterests" class="panel panel-default">
+            <div class="panel-body">
+               {{interest}}
+               <span class="fa fa-times pull-right" ng-click="removeItem($index, jobInterests)"></span>
+            </div>
+         </div>
       </div>
-  </div>
+   </div>
+</div>
+<div class="form-group col-xs-12 col-sm-6">
+   <label>Skills<span ng-show="same2" style="color: red"><small>{{err_message2}}</small></span></label>
+   <div class="row">
+      <div class="col-xs-10">
+         <input ng-model="usrSkill" class="form-control" id="catergories">
+      </div>
+      <div class="col-xs-2">
+         <div ng-click="addskill()" class="btn btn-primary fa fa-plus"></div>
+      </div>
+      <div class="col-xs-12">
+         <div ng-repeat="skill in skills" class="panel panel-default">
+            <div class="panel-body">
+               {{skill}}
+               <span class="fa fa-times pull-right" ng-click="removeItem($index, skills)"></span>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
