@@ -27,11 +27,11 @@ router.get('/jobs.json', function(req,res){
     Job.find({}, function(err, jobs){ //Finds all the jobs
         var collection = {}; //Stores Newly sorted data
         if(jobs.length > 0){ //Checks to see if at least one job exists
-            collection[moment(jobs[0].date_posted).format('LL')] = []; //Sets the first item in collection to the oldest date
-            for(var i = 0; i < Object.keys(collection).length; i++) { //Loops through Collections
+            collection[moment(jobs[jobs.length - 1].date_posted).format('LL')] = []; //Sets the first item in collection to the oldest date
+            for(var i = (Object.keys(collection).length - 1); i >= 0; i--) { //Loops through Collections
 
                 var cur = Object.keys(collection)[i]; //Current date in loop is stored in cur
-                  for(var x = 0; x < jobs.length; x++) { //Loops through jobs
+                  for(var x = (jobs.length - 1); x >= 0; x--) { //Loops through jobs
                       if(moment(jobs[x].date_posted).format('LL') == cur){ //Checks to see if the current job's date matches the current date, if yes, job is pushed into collection
                           collection[cur].push(jobs[x]);//Pushes job to collection
                       } else //If current job's date doesnt match the current date

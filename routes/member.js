@@ -74,4 +74,19 @@ router.post('/addVol', function(req, res){
     res.send(utility.addVolunteer(req.body));
 })
 
+router.post('/removeEdu', function(req, res){
+    console.log('reached!');
+    // res.send(utility.removeEducation(req.body.id));
+});
+
+router.post('/removeExp', function(req, res){
+    console.log('reached!');
+    // res.send(utility.removeExperience(req.body.id));
+});
+
+router.post('/removeVol', function(req, res){
+    console.log('reached!');
+    // res.send(utility.removeVolunteer(req.body.id));
+})
+
 module.exports = router;

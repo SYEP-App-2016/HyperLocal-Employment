@@ -26,6 +26,13 @@ module.exports = {
             });
         }
     },
+    removeEducation: function(id){
+        Education.findOneAndRemove({_id: id}, function(err){
+            if(err) return 404;
+            console.log('Education removed!');
+            return 200;
+        });
+    },
     addExperience: function(data){
         var newExp = new Experience(data.exp);
         newExp.prof_id = data.usr._id;
@@ -44,6 +51,13 @@ module.exports = {
             });
         }
     },
+    removeExperience: function(id){
+        Experience.findOneAndRemove({_id: id}, function(err){
+            if(err) return 404;
+            console.log('Experience removed!');
+            return 200;
+        })
+    },
     addVolunteer: function(data){
         var newVol = new Volunteer(data.vol);
         newVol.prof_id = data.usr._id;
@@ -61,5 +75,12 @@ module.exports = {
                 else{console.log('User Volunteer Experience added!')}
             });
         }
+    },
+    removeVolunteer: function(id){
+        Volunteer.findOneAndRemove({_id: id}, function(err){
+            if(err) return 404;
+            console.log('Volunteer Experience Removed!');
+            return 200;
+        })
     }
 };

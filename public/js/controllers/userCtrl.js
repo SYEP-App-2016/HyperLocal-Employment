@@ -11,6 +11,7 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
                 console.log('Error: ' + data);
             })
     }
+
     $scope.dEdu = false;
     $scope.dExp = false;
     $scope.dVol = false;
@@ -91,5 +92,37 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
             .error(function(data){
                 console.log('Err');
             })
+    }
+
+    $scope.removeEdu = function(id){
+        $http.post('/Member/removeEdu', id)
+            .success(function(data){
+                $scope.refresh();
+            })
+            .error(function(data){
+                console.log('Err: ' + data);
+            });
+    }
+
+    $scope.removeExp = function(id){
+        alert('clicked!');
+        // $http.post('/Member/removeEdu', id)
+        //     .success(function(data){
+        //         $scope.refresh();
+        //     })
+        //     .error(function(data){
+        //         console.log('Err: ' + data);
+        //     });
+    }
+
+    $scope.removeVol = function(id){
+        alert('clicked!');
+        // $http.post('/Member/removeVol', id)
+        //     .success(function(data){
+        //         $scope.refresh();
+        //     })
+        //     .error(function(data){
+        //         console.log('Err: ' + data);
+        //     });
     }
 }]);
