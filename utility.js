@@ -8,6 +8,14 @@ module.exports = {
             return next();
         res.redirect('/');
     },
+    addEducation: function(data){
+        var newEdu = new Education(data.edu);
+        newEdu.prof_id = data.usr._id;
+        newEdu.save(function(err){
+            if(err){console.log(err)}
+            else{console.log('User Education added')}
+        });
+    },
     addAllUserEducation: function(eduData, user){
         for(var i = 0; i < eduData.length; i++){
             var edu = new Education(eduData[i]);
@@ -18,6 +26,14 @@ module.exports = {
             });
         }
     },
+    addExperience: function(data){
+        var newExp = new Experience(data.exp);
+        newExp.prof_id = data.usr._id;
+        newExp.save(function(err){
+            if(err){console.log(err)}
+            else{console.log('User Education added')}
+        });
+    },
     addAllUserExperience: function(expData, user){
         for(var i = 0; i < expData.length; i++){
             var exp = new Experience(expData[i]);
@@ -27,6 +43,14 @@ module.exports = {
                 else{console.log('User Experience added!')}
             });
         }
+    },
+    addVolunteer: function(data){
+        var newVol = new Volunteer(data.vol);
+        newVol.prof_id = data.usr._id;
+        newVol.save(function(err){
+            if(err){console.log(err)}
+            else{console.log('User Education added')}
+        });
     },
     addAllUserVolunteerExperience: function(volData, user){
         for(var i = 0; i < volData.length; i++){

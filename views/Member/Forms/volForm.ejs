@@ -5,7 +5,7 @@
       </center>
    </div>
    <div class="col-xs-12 col-sm-9">
-      <div ng-if="vol.length == 0" class="panel panel-default">
+      <div ng-show="vol.length == 0" class="panel panel-default">
          <div class="panel-body">
             You have no Volunteer Experience posted. Would you like to add one?
             <div ng-click="show('Vol')" class="btn btn-primary pull-right fa fa-plus volBtn"></div>
@@ -26,12 +26,12 @@
             </div>
          </div>
       </div>
-      <div ng-if="vol.length > 0" class="panel panel-default">
+      <div ng-show="vol.length > 0" class="panel panel-default">
          <div class="panel-body">
             <div ng-click="show('Vol')" class="btn btn-primary pull-right fa fa-plus volBtn"></div>
          </div>
       </div>
-      <div ng-if="dVol" class="panel panel-default volForm">
+      <div ng-show="dVol" class="panel panel-default volForm">
          <div class="panel-body">
             <form novalidate ng-submit="addVol()">
                <div class="form-group">

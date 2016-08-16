@@ -63,15 +63,18 @@ router.post('/newUser', function(req, res){
 });
 
 router.post('/addEdu', function(req, res){
-    utility.addAllUserEducation(req.body.eduData, req.body.usr);
+    console.log('Reached Edu!');
+    utility.addEducation(req.body);
 });
 
 router.post('/addExp', function(req, res){
-    utility.addAllUserExperience(req.body.expData, req.body.usr);
+    console.log('Reached Exp');
+    utility.addExperience(req.body);
 });
 
 router.post('/addVol', function(req, res){
-    utility.addAllUserVolunteerExperience(req.body.volData, req.body.usr);
+    console.log('Reached Vol!');
+    utility.addExperience(req.body);
 })
 
 module.exports = router;

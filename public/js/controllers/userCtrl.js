@@ -16,18 +16,34 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
     $scope.dVol = false;
 
     $scope.show = function(i){
-        if(i == 'Edu'){$scope.dEdu = !$scope.dEdu}
-        if(i == 'Exp'){$scope.dEdu = !$scope.dExp}
-        if(i == 'Vol'){$scope.dEdu = !$scope.dVol}
+        if(i == 'Edu'){
+            $scope.dEdu = !$scope.dEdu;
+            $scope.eduData = {};
+        }
+        if(i == 'Exp'){
+            $scope.dExp = !$scope.dExp;
+            $scope.expData = {};
+        }
+        if(i == 'Vol'){
+            $scope.dVol = !$scope.dVol;
+            $scope.volData = {};
+        }
     }
 
     $scope.addEdu = function(){
         var data = {
             usr: $scope.usr,
-            eduData: $scope.eduData
+            eduData: {
+                instit_name: $scope.eduData.instit_name,
+                deg: $scope.eduData.deg,
+                yr_grad: $scope.eduData.yr_grad,
+                f_study: $scope.eduData.f_study
+            }
         }
+        console.log(data);
         $http.post('/Member/addEdu', data)
             .success(function(data){
+                $scope.show('Edu');
                 refresh();
             })
             .error(function(data){
@@ -35,77 +51,50 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
             })
     }
 
-    // $scope.edu = [];
-    // $scope.exp = [];
-    // $scope.vol = [];
-    //
-    // var data = {};
-    //
-    // $scope.addEdu = function(){
-    //     $scope.edu.push({
-    //         instit_name: $scope.name_of_instit,
-    //         deg: $scope.degree,
-    //         yr_grad: $scope.year,
-    //         f_study: $scope.f_study
-    //     });
-    // }
-    //
-    // $scope.addExp = function(){
-    //     $scope.exp.push({
-    //         jb_position: $scope.jb_position,
-    //         jb_description: $scope.jb_description,
-    //         company_name: $scope.company_name,
-    //         start_date: $scope.start_date,
-    //         end_date: $scope.end_date
-    //     });
-    // }
-    //
-    // $scope.addVol = function(){
-    //     $scope.vol.push({
-    //         org: $scope.org,
-    //         role: $scope.role,
-    //         cause: $scope.cause,
-    //         desc: $scope.desc
-    //     });
-    // }
-    //
-    // $scope.createUser = function(){
-    //     $scope.user = {
-    //         f_name: $scope.first,
-    //         l_name: $scope.last,
-    //         obj: $scope.obj,
-    //         cell: $scope.cell,
-    //         home: $scope.home
-    //     }
-    //
-    //     var data = {
-    //         user: $scope.user,
-    //         exp: $scope.exp,
-    //         edu: $scope.edu,
-    //         vol: $scope.vol
-    //     }
-    //
-    //     $http.post('/Member/newUser', data)
-    //         .success(function(data, status){
-    //             $window.location.href = '/Member/Profile';
-    //         })
-    //         .error(function(data, status){
-    //             console.log('Err: ' + data);
-    //             $window.location.href = '/Err';
-    //         })
-    // }
-    //
-    // $scope.removeItem = function(i, arr){
-    //     arr.splice(i, 1);
-    // }
-    //
-    // //Functions for page changes
-    // $scope.contact = "home";
-    // $scope.page = 1;
-    // $scope.next = function(){
-    //     $scope.page++;
-    // }
-    // $scope.back = function(){
-    //     $scope.page--;
-    // }
+    $scope.addExp = function(){
+        var data = {
+            usr: $scope.usr,
+            exp: {
+                jb_position: $scope.jobData.jb_position,
+                jb_description: $scope.jobData.jb_description,
+                company_name: $scope.jobData.company_name,
+                start_date: $scope.jobData.start_date,
+                end_date: $scope.jobData.end_date
+            }
+        }
+
+        console.log(data);
+
+        $http.post('Member/addExp', data)
+            .success(function(data){
+                $scope.show('Exp');
+                refresh();
+            })
+            .error(function(data){
+                console.log('Err');
+            })
+    }
+
+    $scope.addVol = function(){
+        var data = {
+            usr: $scope.usr,
+            vol: {
+                org: $scope.volData.org,
+                role: $scope.volData.role,
+                cause: $scope.volData.cause,
+                desc: $scope.volData. desc
+            }
+        }
+
+        console.log(data);
+
+        $http.post('Member/addVol', data)
+            .success(function(data){
+                $scope.show('Vol');
+                refresh();
+            })
+            .error(function(data){
+                console.log('Err');
+            })
+    }
 }]);

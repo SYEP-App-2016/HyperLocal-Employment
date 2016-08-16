@@ -5,7 +5,7 @@
       </center>
    </div>
    <div class="col-xs-12 col-sm-9">
-      <div ng-if="edu.length == 0" class="panel panel-default">
+      <div ng-show="edu.length == 0" class="panel panel-default">
          <div class="panel-body">
             You have no Education Experience posted. Would you like to add one?
             <div ng-click="show('Edu')" class="btn btn-primary pull-right fa fa-plus eduBtn"></div>
@@ -27,39 +27,35 @@
             </div>
          </div>
       </div>
-      <div ng-if="edu.length > 0" class="panel panel-default">
+      <div ng-show="edu.length > 0" class="panel panel-default">
          <div class="panel-body">
             <div ng-click="show('Edu')" class="btn btn-primary pull-right fa fa-plus eduBtn"></div>
          </div>
       </div>
-      <div ng-if="dEdu" class="panel panel-default eduForm">
+      <div ng-show="dEdu" class="panel panel-default eduForm">
          <div class="panel-body">
-            <form novalidate ng-submit="addEdu()">
-               <div class="form-group">
-                  <label>Name of Institution</label>
-                  <input type="text" class="form-control" ng-model="eduData.instit_name" placeholder="Name of Institution">
-               </div>
-               <div class="form-group">
-                  <label>Degree</label>
-                  <input type="text" class="form-control" ng-model="eduData.deg" placeholder="Degree">
-               </div>
-               <div class="form-group">
-                  <label>Field of Study</label>
-                  <input type="text" class="form-control" ng-model="eduData.f_study" placeholder="Field of Study">
-               </div>
-               <div class="form-group">
-                  <label>Year Graduated</label>
-                  <input type="number" class="form-control" ng-model="eduData.yr_grad" placeholder="1990">
-               </div>
-               <input type="hidden" ng-model="eduData.prof_id" value="{{usr._id}}">
-               <div class="row">
-                  <div class="col-xs-6">
-                     <div class="btn btn-default">Cancel</div>
-                  </div>
-                  <div class="col-xs-6">
-                     <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                  </div>
-               </div>
+             <div class="col-xs-12">
+                <center>Education</center>
+                <div class="form-group">
+                   <label>Name of Institution</label>
+                   <input type="text" ng-model="eduData.instit_name" class="form-control" placeholder="Name of Institution">
+                </div>
+                <div class="form-group">
+                   <label>Degree</label>
+                   <input type="text" ng-model="eduData.deg" class="form-control" placeholder="Degree">
+                </div>
+                <div class="form-group">
+                   <label>Field of Study</label>
+                   <input type="text" ng-model="eduData.f_study" class="form-control" placeholder="Field of Study">
+                </div>
+                <div class="form-group">
+                   <label>Year Graduated</label>
+                   <input type="number" ng-model="eduData.yr_grad" class="form-control" placeholder="1990">
+                </div>
+                <div class="row">
+                   <button ng-click="addEdu()" class="btn btn-primary">Add Edu</button>
+                </div>
+             </div>
             </form>
          </div>
       </div>
