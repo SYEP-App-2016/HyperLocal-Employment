@@ -33,30 +33,27 @@
       </div>
       <div ng-show="dVol" class="panel panel-default volForm">
          <div class="panel-body">
-            <form novalidate ng-submit="addVol()">
-               <div class="form-group">
-                  <label>Organization</label>
-                  <input type="text" class="form-control" name="organization" placeholder="Name of Organization">
-               </div>
-               <div class="form-group">
-                  <label>Role</label>
-                  <input type="text" class="form-control" name="role" placeholder="Role">
-               </div>
-               <div class="form-group">
-                  <label>Cause</label>
-                  <input type="text" class="form-control" name="cause" placeholder="Cause">
-               </div>
-               <div class="form-group">
-                  <label>description</label>
-                  <textarea type="text" class="form-control" name="description" placeholder="Description"></textarea>
-               </div>
-               <input type="hidden" name="usr_id" value="{{ v._id }}">
-               <div class="row">
-                  <div class="col-lg-12">
-                     <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-               </div>
-            </form>
+           <div class="form-group">
+              <label>Organization</label>
+              <input type="text" class="form-control" ng-model="volData.org" placeholder="Name of Organization">
+           </div>
+           <div class="form-group">
+              <label>Role</label>
+              <input type="text" class="form-control" ng-model="volData.role" placeholder="Role">
+           </div>
+           <div class="form-group">
+              <label>Cause</label>
+              <input type="text" class="form-control" ng-model="volData.cause" placeholder="Cause">
+           </div>
+           <div class="form-group">
+              <label>description</label>
+              <textarea type="text" class="form-control" ng-model="volData.desc" placeholder="Description"></textarea>
+           </div>
+           <div class="row">
+              <div class="col-lg-12">
+                 <button ng-click="addVol()" class="btn btn-primary">Submit</button>
+              </div>
+           </div>
          </div>
       </div>
    </div>

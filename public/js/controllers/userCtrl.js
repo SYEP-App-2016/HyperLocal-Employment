@@ -33,7 +33,7 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
     $scope.addEdu = function(){
         var data = {
             usr: $scope.usr,
-            eduData: {
+            edu: {
                 instit_name: $scope.eduData.instit_name,
                 deg: $scope.eduData.deg,
                 yr_grad: $scope.eduData.yr_grad,
@@ -43,12 +43,11 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
         console.log(data);
         $http.post('/Member/addEdu', data)
             .success(function(data){
-                console.log('Reached');
                 $scope.show('Edu');
-                refresh();
+                $scope.refresh();
             })
             .error(function(data){
-                console.log('Err');
+                console.log('Err: ' + data);
             })
     }
 
@@ -63,16 +62,13 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
                 end_date: $scope.jobData.end_date
             }
         }
-
-        console.log(data);
-
-        $http.post('Member/addExp', data)
+        $http.post('/Member/addExp', data)
             .success(function(data){
                 $scope.show('Exp');
-                refresh();
+                $scope.refresh();
             })
             .error(function(data){
-                console.log('Err');
+                console.log('Err :' + data);
             })
     }
 
@@ -83,16 +79,14 @@ app.controller('userCtrl', ['$scope', '$http', '$window', function($scope, $http
                 org: $scope.volData.org,
                 role: $scope.volData.role,
                 cause: $scope.volData.cause,
-                desc: $scope.volData. desc
+                desc: $scope.volData.desc
             }
         }
 
-        console.log(data);
-
-        $http.post('Member/addVol', data)
+        $http.post('/Member/addVol', data)
             .success(function(data){
                 $scope.show('Vol');
-                refresh();
+                $scope.refresh();
             })
             .error(function(data){
                 console.log('Err');
