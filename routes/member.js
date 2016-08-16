@@ -49,17 +49,16 @@ router.get('/newUser', function(req, res){
 })
 
 router.post('/newUser', function(req, res){
-    var newUser = new User(req.body);
+    var newUser = new User(req.body.user);
     newUser.acc_id = req.user._id;
     newUser.email = req.user.email;
-    // newUser.save(function(err){
-    //     if(err){console.log(err)}
-    //     else{console.log('User Created!')}
-    // });
-    console.log(req.body.expData);
-    // utility.addAllUserExperience(JSON.parse(req.body.expData), newUser);
-    // utility.addAllUserEducation(JSON.parse(req.body.eduData), newUser);
-    // utility.addAllUserVolunteerExperience(JSON.parse(req.body.volData), newUser);
+    newUser.save(function(err){
+        if(err){console.log(err)}
+        else{console.log('User Created!')}
+    });
+    utility.addAllUserExperience(req.body.exp, newUser);
+    utility.addAllUserEducation(req.body.edu, newUser);
+    utility.addAllUserVolunteerExperience(req.body.vol, newUser);
     res.send(newUser);
 });
 

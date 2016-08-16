@@ -2,10 +2,10 @@
     <label>Basic Information</label>
     <div class="row">
         <div class="col-xs-12 col-sm-6">
-            <input class="form-control" ng-model="first" type="text" placeholder="First Name">
+            <input class="form-control" ng-model="usrData.first" type="text" placeholder="First Name">
         </div>
         <div class="col-xs-12 col-sm-6">
-            <input class="form-control" ng-model="last" type="text" placeholder="Last Name">
+            <input class="form-control" ng-model="usrData.last" type="text" placeholder="Last Name">
         </div>
     </div>
 </div>
@@ -19,15 +19,15 @@
           </select>
       </div>
       <div class="col-xs-12 col-sm-6">
-          <input ng-if="contact == 'mobile'" type="text" ng-model="cell" class="form-control" placeholder="Mobile Cell Phone"/>
-          <input ng-if="contact == 'home'" type="text" ng-model="home" class="form-control" placeholder="Home Phone"/>
+          <input ng-if="contact == 'mobile'" type="text" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
+          <input ng-if="contact == 'home'" type="text" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
       </div>
   </div>
 </div>
 
 <div class="form-group">
   <label>Objective</label>
-  <input ng-model="obj" type="text" class="form-control" placeholder="Objective" row="3"></input>
+  <input ng-model="usrData.obj" type="text" class="form-control" placeholder="Objective" row="3"></input>
 </div>
 
 <div class="form-group">

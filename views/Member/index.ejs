@@ -12,9 +12,9 @@
          </div>
          <div class="col-sm-8 col-md-9">
             <div class="right">
-               <h1>{{ usr.f_name }} {{ usr.l_name }}</h1>
-               <p><u>Home:</u> {{ usr.home }}</p>
-               <p><u>Cell: </u>{{ usr.cell }}</p>
+               <h1>{{ usr.first }} {{ usr.last }}</h1>
+               <p ng-if="usr.home != ''"><u>Home:</u> {{ usr.home }}</p>
+               <p ng-if="usr.cell != ''"><u>Cell: </u>{{ usr.cell }}</p>
                <p><u>Email Address:</u> {{ usr.email }}</p>
             </div>
          </div>

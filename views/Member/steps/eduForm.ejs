@@ -2,32 +2,28 @@
    <center>Education</center>
    <div class="form-group">
       <label>Name of Institution</label>
-      <input type="text" ng-model="data.name_of_instit" class="form-control" placeholder="Name of Institution">
+      <input type="text" ng-model="eduData.instit_name" class="form-control" placeholder="Name of Institution">
    </div>
    <div class="form-group">
       <label>Degree</label>
-      <input type="text" ng-model="degree" class="form-control" placeholder="Degree">
+      <input type="text" ng-model="eduData.degree" class="form-control" placeholder="Degree">
    </div>
    <div class="form-group">
       <label>Field of Study</label>
-      <input type="text" ng-model="f_study" class="form-control" placeholder="Field of Study">
+      <input type="text" ng-model="eduData.f_study" class="form-control" placeholder="Field of Study">
    </div>
    <div class="form-group">
       <label>Year Graduated</label>
-      <input type="number" ng-model="year" class="form-control" placeholder="1990">
+      <input type="number" ng-model="eduData.yr_grad" class="form-control" placeholder="1990">
    </div>
    <div class="row">
-      <div class="btn btn-primary" ng-click="addEdu()">Add Edu</div>
+      <button ng-click="addEdu()" class="btn btn-primary">Add Edu</button>
    </div>
 </div>
 <div class="col-xs-12 col-sm-4">
    <div ng-repeat="item in edu" class="panel panel-default">
       <div class="panel-body">
-         {{item.instit_name}}
-         {{item.deg}}
-         {{item.yr_grad}}
-         {{item.f_study}}
-         {{item.prof_id}}
+        {{item.instit_name}} {{item.degree}} {{item.yr_grad}} {{item.f_study}}
          <span class="fa fa-times pull-right" ng-click="removeItem($index, edu)"></span>
       </div>
    </div>

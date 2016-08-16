@@ -4,9 +4,9 @@ var mongoose = require('mongoose'),
     moment = require('moment');
 
 var userSchema = new Schema({
-    f_name: String,
+    first: String,
     m_init: String,
-    l_name: String,
+    last: String,
     obj: String,
     cell: String,
     home: String,

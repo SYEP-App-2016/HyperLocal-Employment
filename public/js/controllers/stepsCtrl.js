@@ -4,43 +4,41 @@ app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $htt
     $scope.exp = [];
     $scope.vol = [];
 
-    var data = {};
-
     $scope.addEdu = function(){
         $scope.edu.push({
-            instit_name: $scope.name_of_instit,
-            deg: $scope.degree,
-            yr_grad: $scope.year,
-            f_study: $scope.f_study
+            instit_name: $scope.eduData.instit_name,
+            degree: $scope.eduData.degree,
+            f_study: $scope.eduData.f_study,
+            yr_grad: $scope.eduData.yr_grad
         });
     }
 
     $scope.addExp = function(){
         $scope.exp.push({
-            jb_position: $scope.jb_position,
-            jb_description: $scope.jb_description,
-            company_name: $scope.company_name,
-            start_date: $scope.start_date,
-            end_date: $scope.end_date
+            jb_position: $scope.jobData.jb_position,
+            jb_description: $scope.jobData.jb_description,
+            company_name: $scope.jobData.company_name,
+            start_date: $scope.jobData.start_date,
+            end_date: $scope.jobData.end_date
         });
     }
 
     $scope.addVol = function(){
         $scope.vol.push({
-            org: $scope.org,
-            role: $scope.role,
-            cause: $scope.cause,
-            desc: $scope.desc
+            org: $scope.volData.org,
+            role: $scope.volData.role,
+            cause: $scope.volData.cause,
+            desc: $scope.volData.desc
         });
     }
 
     $scope.createUser = function(){
         $scope.user = {
-            f_name: $scope.first,
-            l_name: $scope.last,
-            obj: $scope.obj,
-            cell: $scope.cell,
-            home: $scope.home
+            first: $scope.usrData.first,
+            last: $scope.usrData.last,
+            obj: $scope.usrData.obj,
+            cell: $scope.usrData.cell,
+            home: $scope.usrData.home
         }
 
         var data = {
