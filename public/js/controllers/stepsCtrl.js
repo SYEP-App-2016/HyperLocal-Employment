@@ -26,10 +26,10 @@ app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $htt
         var skill = $scope.usrSkill;
         $scope.same2 = false;
         for(var i = 0; i < $scope.skills.length; i++){
-            if($scope.skills[i] == skill);
+            if($scope.skills[i] == skill)
                 $scope.same2 = true;
         }
-        if(!scope.same2){
+        if(!$scope.same2){
             $scope.skills.push(skill);
             $scope.same2 = false;
         }
@@ -67,6 +67,11 @@ app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $htt
         });
     }
 
+    $scope.formatNumber = function(n){
+        n = n.toString();
+        return newn = '(' + n.substring(0,3) + ') ' + n.substring(3,6) + ' - ' + n.substring(6, 10);
+    }
+
     $scope.createUser = function(){
         $scope.user = {
             first: $scope.usrData.first,
@@ -74,7 +79,8 @@ app.controller('stepsCtrl', ['$scope', '$http', '$window', function($scope, $htt
             obj: $scope.usrData.obj,
             cell: $scope.usrData.cell,
             home: $scope.usrData.home,
-            job_interests: $scope.jobInterests
+            job_interests: $scope.jobInterests,
+            skills: $scope.skills
         }
 
         var data = {

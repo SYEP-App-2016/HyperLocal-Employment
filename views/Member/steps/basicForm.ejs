@@ -19,8 +19,8 @@
          </select>
       </div>
       <div class="col-xs-12 col-sm-6">
-         <input ng-if="contact == 'mobile'" type="text" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
-         <input ng-if="contact == 'home'" type="text" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
+         <input ng-if="contact == 'mobile'" type="number" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
+         <input ng-if="contact == 'home'" type="number" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
       </div>
    </div>
 </div>
@@ -55,7 +55,7 @@
          <input ng-model="usrSkill" class="form-control" id="catergories">
       </div>
       <div class="col-xs-2">
-         <div ng-click="addskill()" class="btn btn-primary fa fa-plus"></div>
+         <div ng-click="addSkill()" class="btn btn-primary fa fa-plus"></div>
       </div>
       <div class="col-xs-12">
          <div ng-repeat="skill in skills" class="panel panel-default">
