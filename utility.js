@@ -2,7 +2,9 @@ var Education = require('./models/education'),
     Experience = require('./models/experience'),
     Volunteer = require('./models/volunteer'),
     Account = require('./models/account'),
-    User = require('./models/user');
+    User = require('./models/user'),
+    Company = require('./models/company'),
+    Job = require('./models/job');
 
 module.exports = {
     isLoggedIn: function(req, res, next){
@@ -97,6 +99,19 @@ module.exports = {
                     if(err){console.log(err)}
                 });
                 acc.remove(function(){
+                    if(err){console.log(err)}
+                });
+            });
+        });
+        return 200;
+    },
+    removeBusiness: function(id){
+        Company.findOne({_id: id}, function(err, company){
+            Jobs.find({'company._id': id}, function(err, jobs){
+                jobs.remove(function(){
+                    if(err){console.log(err)}
+                });
+                company.remove(function(){
                     if(err){console.log(err)}
                 });
             });
