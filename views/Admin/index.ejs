@@ -56,12 +56,8 @@
                                    </div>
                                </div>
                                <div class="panel-footer">
-                                   <div ng-init="user.displayInfo = false" ng-show="user.displayInfo">
-                                       <p ng-if="user.cell">Cell: {{user.cell}}</p>
-                                       <p ng-if="user.home">Home: {{user.home}}</p>
-                                       <p>Email: {{user.email}}</p>
-                                   </div>
                                    <div class="btn btn-default fa fa-ellipsis-h"></div>
+                                   <div class="btn btn-danger fa fa-trash pull-right" ng-click="removeUser(user.acc_id)"></div>
                                </div>
                            </div>
                        </div>

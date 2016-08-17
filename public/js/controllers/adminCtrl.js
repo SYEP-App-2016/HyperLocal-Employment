@@ -16,6 +16,14 @@ app.controller('adminCtrl', ['$scope', '$http', function($scope, $http){
         $scope.page = i;
     }
 
-    
-
+    $scope.removeUser = function(id){
+        var data = {id: id};
+        $http.post('/Member/removeUser', data)
+            .success(function(data){
+                $scope.refresh();
+            })
+            .error(function(data){
+                console.log('Err: ' + data);
+            })
+    }
 }]);

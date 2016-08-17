@@ -89,4 +89,8 @@ router.post('/removeVol', function(req, res){
     // res.send(utility.removeVolunteer(req.body.id));
 })
 
+router.post('/removeUser', function(req, res){
+    res.send(utility.removeUser(req.body.id));
+})
+
 module.exports = router;

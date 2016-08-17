@@ -1,6 +1,8 @@
 var Education = require('./models/education'),
     Experience = require('./models/experience'),
-    Volunteer = require('./models/volunteer');
+    Volunteer = require('./models/volunteer'),
+    Account = require('./models/account'),
+    User = require('./models/user');
 
 module.exports = {
     isLoggedIn: function(req, res, next){
@@ -87,5 +89,18 @@ module.exports = {
             console.log('Volunteer Experience Removed!');
             return 200;
         })
+    },
+    removeUser: function(id){
+        Account.findOne({_id: id}, function(err, acc){
+            User.findOne({acc_id: id}, function(err, user){
+                user.remove(function(){
+                    if(err){console.log(err)}
+                });
+                acc.remove(function(){
+                    if(err){console.log(err)}
+                });
+            });
+        });
+        return 200;
     }
 };
