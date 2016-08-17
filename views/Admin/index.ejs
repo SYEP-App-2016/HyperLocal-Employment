@@ -80,11 +80,10 @@
                                        <p>{{company.name}}</p>
                                        <p><small>{{company.address}} {{company.city}} {{company.state}}, {{company.zip}}</small></p>
                                    </div>
-                                   <!-- <br>
-                                   <div class="row">
-                                       <div class="btn btn-primary btn-sm pull-right fa fa-ellipsis-h"></div>
-                                   </div> -->
-                                   <hr>
+                               </div>
+                               <div class="panel-footer">
+                                   <a href="/Job/Add/{{company._id}}" class="btn btn-default fa fa-plus"></a>
+                                   <a href="/Business/Details/{{company._id}}" class="btn btn-default fa fa-ellipsis-h"></a>
                                </div>
                            </div>
                        </div>
@@ -102,6 +101,9 @@
                                    <div class="col-sm-9">
                                        <p>{{job.jb_position}} - {{job.company.name}}</p>
                                    </div>
+                               </div>
+                               <div class="panel-footer">
+                                   <a href="/Job/Details/{{job._id}}" class="btn btn-default fa fa-ellipsis-h"></a>
                                </div>
                            </div>
                        </div>

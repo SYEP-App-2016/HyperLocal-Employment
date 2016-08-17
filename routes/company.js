@@ -8,7 +8,7 @@ var express = require('express'),
 //Sends Found data as json
 router.get('/Details/:id/data.json', function(req, res){
     var o = {}; //Initialize an empty array to store results
-    Company.findOne({_id: new ObjectId('57b1fdc6f4bf0140301ed32d')}, function(err, company){ //Finds a company that is linked to an account, temporarily set as an default acc
+    Company.findOne({_id: req.params.id}, function(err, company){ //Finds a company that is linked to an account, temporarily set as an default acc
         o.c = company; //Stores Company results to o obj
         Job.find({'company._id': company._id}, function(err, jobs){ //Finds Jobs linked to a company
             o.jobs = jobs; //Stores Jobs results to o obj
