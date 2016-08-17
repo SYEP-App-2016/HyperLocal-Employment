@@ -8,8 +8,8 @@
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    <h2 style="display: inline-block">{{data.jb_position}}</h2>
-                    <h4 style="display: inline-block"><em> - {{ data.company.company_name }}</em></h4>
+                    <h2 style="display: inline-block">{{data.position}}</h2>
+                    <h4 style="display: inline-block"><em> - {{ data.company.name }}</em></h4>
                     <h4><em>{{ results.catergory }}</em></h4>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h1 class="page-header">Description</h1>
-                    <h4>{{ results.jb_desc }}</h4>
+                    <h4>{{ results.desc }}</h4>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <h1>Contact Information</h1>
-                <h4>Email: {{ data.jb_contact }}</h4>
+                <h4>Email: {{ data.contact.email }}</h4>
                 <h4>Website: {{ results.url }}</h4>
             </div>
         </div>

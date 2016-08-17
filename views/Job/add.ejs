@@ -7,7 +7,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-8">
                 <label>Job Position</label>
-                <input type="text" class="form-control" ng-model="jb_position" placeholder="Job Position" required>
+                <input type="text" class="form-control" ng-model="position" placeholder="Job Position" required>
             </div>
             <div class="form-group col-xs-12 col-sm-4">
                 <label>Job Catergory</label>
@@ -17,26 +17,33 @@
         </div>
         <div class="form-group">
             <label>Description Teaser</label>
-            <input type="text" class="form-control" ng-model="jb_desc_teaser" placeholder="Job Description" maxlength="100" required>
+            <input type="text" class="form-control" ng-model="teaser" placeholder="Job Description" maxlength="100" required>
         </div>
-
         <div class="row">
             <div class="form-group col-xs-12 col-sm-6">
                 <label>Description</label>
-                <textarea type="text" class="form-control" ng-model="jb_desc" placeholder="Job Description" required style="resize: none" rows=12></textarea>
+                <textarea type="text" class="form-control" ng-model="desc" placeholder="Job Description" required style="resize: none" rows=12></textarea>
             </div>
 
             <div id="dvSkillsSection" class="col-xs-12 col-sm-6">
-                <label>Required Skills</label>
+                <label>Required Skills<span ng-show="same" style="color: red"><small>{{err_message2}}</small></span></label>
                 <div class="form-group" data-input="0">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Enter skill" ng-model="req_skills" />
-                        <span class="input-group-btn">
-                            <button id="btnNewSkill" type="button" class="btn btn-default" aria-label="Left Align" onclick="createInput()">
-                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            </button>
-                        </span>
-                    </div><!-- /input-group -->
+                    <div class="row">
+                       <div class="col-xs-10">
+                          <input ng-model="skill" placeholder="Enter Skill" class="form-control" id="catergories">
+                       </div>
+                       <div class="col-xs-2">
+                          <div ng-click="addSkill()" class="btn btn-primary fa fa-plus"></div>
+                       </div>
+                       <div class="col-xs-12">
+                          <div ng-repeat="jobSkill in reqSkills" class="col-sm-5 panel panel-default" ng-class="{'col-sm-offset-1': $index % 2 != 0}">
+                             <div class="panel-body">
+                                {{jobSkill}}
+                                <span class="fa fa-times pull-right" ng-click="removeItem($index, reqSkills)"></span>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
                 </div><!-- /.col-lg-6 -->
             </div>
         </div>
@@ -65,12 +72,19 @@
 
         <div class="form-group">
             <label>Contact Information</label>
-            <input type="text" class="form-control" ng-model="contact" placeholder="Contact">
+            <div class="row">
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="contact.phone" placeholder="Company Phone Number">
+                </div>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="contact.email" placeholder="Company Email">
+                </div>
+            </div>
         </div>
         <input type="hidden" value="" ng-model="logo">
         <input type="hidden" value="" ng-model="company_id">
         <button type="submit" class="btn btn-primary pull-right">Post New Job</button>
-        <a href="/company" class="btn btn-default pull-left">Cancel</a>
+        <a href="/Business/Details/{{id}}" class="btn btn-default pull-left">Cancel</a>
     </form>
 </div>
 </body>

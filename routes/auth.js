@@ -6,7 +6,7 @@ var passport = require('passport'),
     router = express.Router(),
     utility = require('../utility');
 
-router.get('/Signup', function(req, res){
+router.get('/Signup', utility.isNotLoggedIn, function(req, res){
     res.render('Auth/Signup', {message: req.flash('signupMessage'), user: req.user});
 });
 
@@ -34,7 +34,7 @@ router.post('/newUser', function(req, res){
     res.redirect('/member/profile');
 });
 
-router.get('/Login', function(req, res){
+router.get('/Login', utility.isNotLoggedIn, function(req, res){
     res.render('auth/login', {message: req.flash('loginMessage'), user: req.user});
 });
 
@@ -42,9 +42,18 @@ router.post('/Login', passport.authenticate('local-login', {
     failureRedirect: '/Auth/Login',
     failureFlash: true
 }), function(req, res){
-    res.redirect('/Member/Profile');
+    switch (req.user.roleID) {
+        case 1:
+            res.redirect('/'); //Gonna be Business page in future
+            break;
+        case 2:
+            res.redirect('/Admin');
+            break;
+        default:
+            res.redirect('/Member/Profile');
+            break;
+    }
 });
-
 
 router.get('/Logout', function(req, res){
     req.logout();

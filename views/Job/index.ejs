@@ -1,44 +1,34 @@
 <% include /Templates/header %>
 <div class="container" ng-controller="mainCtrl" ng-init="refresh()">
-    <div class="page-header">
-        <h1>Job Listing</h1>
-    </div>
-    <div ng-repeat="(key, value) in data">
-        <div style="margin-bottom: 10px" class="col-xs-12 col-sm-12 col-md-12 bg-success">
-            <center ng-if="item.date_posted != currentDate"><h1><small>{{key}}</small></h1></center>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-md-3" ng-repeat="item in value">
-                <div>
-                    <div class="thumbnail"  ng-init="currentDate = item.date_posted">
-                        <img style="height: 180px" src="{{ item.logo}}" alt="...">
-                        <div class="caption">
-                            <h4>{{item.jb_position}}</h4>
-                            <div class="row catsal">
-                                <small>
-                                    <p class="col-sm-8"><em>{{item.catergory}}</em></p>
-                                </small>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <small><p class="desc_teaser">{{item.desc_teaser}}</p></small>
-                                </div>
-                            </div>
-                            <div class='row'>
-                                <div class="col-xs-6">
-                                    <a href="Job/Details/{{item._id}}" class="btn btn-primary btn-sm" role="button">View More</a>
-                                </div>
-                                <div class="col-xs-6">
-                                    <p class="pull-right"><em>{{item.view_count}} views</em></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+   <div class="page-header">
+      <h1>Job Listing</h1>
+   </div>
+   <div ng-repeat="(key, value) in data">
+      <div style="margin-bottom: 10px" class="col-xs-12 col-sm-12 col-md-12 bg-success">
+         <center>
+            <h1><small>{{key}}</small></h1>
+         </center>
+      </div>
+      <div class="row">
+         <div class="col-sm-4 col-md-3" ng-repeat="item in value">
+            <div class="thumbnail">
+               <img src="{{item.logo}}" alt="...">
+               <div class="caption">
+                  <h4>
+                     <center>{{item.position}}</center>
+                  </h4>
+                  <center>
+                     <small>
+                        <p style="height: 20px;"><em>{{item.catergory}}</em></p>
+                        <p style="height: 40px;">{{item.teaser}}</p>
+                     </small>
+                  </center>
+                  <p><a href="Job/Details/{{item._id}}" class="btn btn-default btn-sm" role="button">View More</a><span class="pull-right"><small><em>{{item.view_count}} Views</em></small></span></p>
+               </div>
             </div>
-        </div>
-    </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>
 </body>
 </html>

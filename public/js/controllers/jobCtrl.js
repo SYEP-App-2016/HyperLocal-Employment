@@ -4,21 +4,50 @@ app.controller('jobCtrl', ['$scope', '$http', '$window', '$location', function($
         $http.get('/Job/Details/' + $location.absUrl().split('/')[5] + '/data.json') //gets Json data from /Job/Details/:id/data.json
             .success(function(data){ //Executes on success
                 $scope.data = data; //sets $scope.data to newly aquired data, allows access to it on details page
+                console.log(data);
             })
             .error(function(data){ //Executes on Err, may lead to err page in future
                 console.log('Error: ' + data);
             });
     }
 
+    $scope.id = $location.absUrl().split('/')[5]
+
+    $scope.sal = 'hr';
+
+    $scope.reqSkills = [];
+    $scope.err_message2 = 'Skill already inputted';
+    $scope.same = false;
+
+    $scope.addSkill = function(){
+        var skill = $scope.skill;
+        $scope.same = false;
+        for(var i = 0; i < $scope.reqSkills.length; i++){
+            if($scope.reqSkills[i] == skill)
+                $scope.same = true;
+        }
+        if(!$scope.same){
+            $scope.reqSkills.push(skill);
+            $scope.same = false;
+        }
+    }
+
+    $scope.removeItem = function(i, arr){
+        arr.splice(i, 1);
+    }
+
     $scope.postJob = function(){
         //Creates an Object of Job info
         var data = {
-            jb_position: $scope.jb_position,
-            jb_desc: $scope.desc,
-            jb_desc_teaser: $scope.teaser,
-            jb_contact: $scope.contact,
-            jb_type: $scope.jb_type,
-            pay_rt: $scope.rt,
+            position: $scope.position,
+            desc: $scope.desc,
+            teaser: $scope.teaser,
+            contact: {
+                phone: $scope.contact.phone,
+                email: $scope.contact.email
+            },
+            type: $scope.type,
+            pay_rt: $scope.pay_rt,
             sal: $scope.sal,
             catergory: $scope.catergory
         }

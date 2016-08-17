@@ -3,12 +3,15 @@ var mongoose = require('mongoose'),
 
 
 var jobSchema = new Schema({
-    jb_position: {required: true, type: String},
-    jb_desc:  String,
-    jb_desc_teaser: String,
-    jb_contact: String,
+    position: {required: true, type: String},
+    desc:  String,
+    teaser: String,
+    contact: {
+        phone: String,
+        email: String
+    },
     req_skills: [String],
-    date_posted: String,
+    date_posted: Date,
     deadline: Date,
     jb_type: String, //Full-time, part-time or internship
     pay_rt: Number,

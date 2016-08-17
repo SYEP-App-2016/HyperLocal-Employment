@@ -8,6 +8,11 @@ module.exports = {
             return next();
         res.redirect('/');
     },
+    isNotLoggedIn: function(req, res, next){
+        if(!req.isAuthenticated())
+            return next();
+        res.redirect('/Member/Profile');
+    },
     addEducation: function(data){
         var newEdu = new Education(data.edu);
         newEdu.prof_id = data.usr._id;
