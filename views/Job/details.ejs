@@ -2,25 +2,25 @@
 
 <div class="container" ng-init="refresh()" ng-controller="jobCtrl">
     <div class="panel panel-default">
-        <div class="row">
-            <div class="col-sm-4">
-                <img class="picture" src= "{{ data.logo }}">
-            </div>
-            <div class="col-sm-8">
-                <div class="row">
-                    <h2 style="display: inline-block">{{data.position}}</h2>
-                    <h4 style="display: inline-block"><em> - {{ data.company.name }}</em></h4>
-                    <h4><em>{{ results.catergory }}</em></h4>
-                </div>
-            </div>
-        </div>
+       <div class="panel-body row">
+          <div class="col-sm-2">
+             <img class="img-responsive" src="{{data.logo}}" alt="...">
+          </div>
+          <div class="col-sm-10">
+             <div class="right">
+                <h1>{{ data.position }}</h1>
+                <h4>{{ data.company.name }}</h4>
+                <p><em>{{ data.catergory }}</em></p>
+             </div>
+          </div>
+       </div>
     </div>
     <div class="row">
         <div class="col-sm-8">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h1 class="page-header">Description</h1>
-                    <h4>{{ results.desc }}</h4>
+                    <h4>{{ data.desc }}</h4>
                 </div>
             </div>
         </div>
@@ -28,17 +28,9 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h1 class="page-header">Required Skills</h1>
-                        <li ng-repeat="skill in data.req_skills"><p>{{ results.req_skills[i] }}</p></li>
+                    <p ng-if="data.req_skills.length == 0">There are no required skills</p>
+                    <li ng-repeat="skill in data.req_skills"><p>{{ data }}</p></li>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <h1>Contact Information</h1>
-                <h4>Email: {{ data.contact.email }}</h4>
-                <h4>Website: {{ results.url }}</h4>
             </div>
         </div>
     </div>

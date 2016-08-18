@@ -19,8 +19,8 @@
          </select>
       </div>
       <div class="col-xs-12 col-sm-6">
-         <input ng-if="contact == 'mobile'" type="number" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
-         <input ng-if="contact == 'home'" type="number" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
+         <input ng-show="contact == 'mobile'" type="text" ng-model="usrData.cell" class="form-control" placeholder="Mobile Cell Phone"/>
+         <input ng-s="contact == 'home'" type="text" ng-model="usrData.home" class="form-control" placeholder="Home Phone"/>
       </div>
    </div>
 </div>

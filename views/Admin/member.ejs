@@ -1,12 +1,12 @@
 <% include ../templates/header.ejs %>
 
 <div class="container">
-    
+
     <%= title %>
 
     <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6">
-            <button class="btn btn-default">Members</button> 
+            <button class="btn btn-default">Members</button>
         </div>
     <div>
     <div class="row">
@@ -16,7 +16,7 @@
                 <tr>
                     <th><td>Email</td></th><th><td>First</td></th>
                 </tr><tr>
-                    
+
                     <% for(var i = 0; i < user.length; i++) { %>
                         <td> <%= user[i].email %> </td>
                         <td> <%= user[i].f_name %> </td>
@@ -29,6 +29,5 @@
 
 
 </div>
-
-
-<% include ../templates/footer.ejs %>
+</body>
+</html>

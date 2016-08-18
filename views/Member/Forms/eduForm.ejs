@@ -13,22 +13,21 @@
       </div>
       <div ng-repeat="e in edu" class="panel panel-default">
          <div class="panel-body">
-            <p><u>{{ e.instit_name }} / {{ e.deg }}</u></p>
-            <p>{{ e.yr_grad }}</p>
-            <p>{{ e.f_study }}</p>
-            <div class="row">
-               <div class="col-xs-2 col-xs-offset-10">
-                  <div value="{{$index}}" class="fa fa-pencil btn btn-lg btn-success edu_edit"></div>
-                  <!-- <form method="POST" action="removeEducation" style="display: inline-block"> -->
-                     <!-- <input type="hidden" value="{{ e._id }}" name="edu_id"/> -->
-                     <button ng-click="removeEdu(e._id)" class="fa fa-trash btn-lg btn-danger"></button>
-                  <!-- </form> -->
-               </div>
-            </div>
+             <div class="col-sm-1">
+                 <span class="fa fa-book fa-2x"></span>
+             </div>
+             <div class="col-sm-11">
+                 <p>{{e.instit_name}}</p>
+             </div>
+         </div>
+         <div class="panel-footer">
+             <div value="{{$index}}" class="fa fa-pencil btn btn-success edu_edit"></div>
+             <div ng-click="removeEdu(e._id)" class="fa fa-trash btn btn-danger"></div>
          </div>
       </div>
       <div ng-show="edu.length > 0" class="panel panel-default">
          <div class="panel-body">
+             <span>Add a new Education?</span>
             <div ng-click="show('Edu')" class="btn btn-primary pull-right fa fa-plus eduBtn"></div>
          </div>
       </div>

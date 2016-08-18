@@ -12,20 +12,22 @@
          </div>
       </div>
       <div ng-repeat="e in exp" class="panel panel-default">
-         <div class="panel-body">
-            <p><u>{{ e.company_name }} / {{ e.jb_position }}</u></p>
-            <p><i>Description</i></p>
-            <p>MONTH/YEAR-MONTH/YEAR, LOCATION</p>
-            <div class="row">
-               <div class="col-xs-2 col-xs-offset-10">
-                  <div class="fa fa-pencil btn btn-lg btn-success"></div>
-                  <button ng-click="removeExp(e._id)" class="fa fa-trash btn-lg btn-danger"></button>
-               </div>
-            </div>
-         </div>
+          <div class="panel-body">
+              <div class="col-sm-1">
+                  <span class="fa fa-building fa-2x"></span>
+              </div>
+              <div class="col-sm-11">
+                  <p>{{e.jb_position}}</p>
+              </div>
+          </div>
+          <div class="panel-footer">
+              <div value="{{$index}}" class="fa fa-pencil btn btn-success exp_edit"></div>
+              <div ng-click="removeExp(e._id)" class="fa fa-trash btn btn-danger"></div>
+          </div>
       </div>
       <div ng-show="exp.length > 0" class="panel panel-default">
          <div class="panel-body">
+             <span>Add a new Job Experience? </span>
             <div ng-click="show('Exp')" class="btn btn-primary pull-right fa fa-plus expBtn"></div>
          </div>
       </div>
@@ -44,9 +46,7 @@
                <textarea type="text" class="form-control" ng-model="jobData.jb_description" name="job_description" placeholder="Password"></textarea>
              </div>
              <div class="form-group">
-               <!-- <div class="col-lg-12"> -->
                <label>Start - End Date</label>
-               <!-- </div> -->
                <div class="row">
                  <div class="col-lg-6">
                    <input type="date" ng-model="start_date" class="form-control" name="jobData.start_date">

@@ -1,67 +1,72 @@
 <% include ../templates/header %>
 <div class="container" ng-controller="businessCtrl" ng-init="refresh()">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <div class="col-sm-4">
-                <img class="picture" src="{{data.c.logo}}">
+   <div class="panel panel-default">
+      <div class="panel-body row">
+         <div class="col-sm-2">
+            <img class="img-responsive" src="{{data.c.logo}}" alt="...">
+         </div>
+         <div class="col-sm-10">
+            <div class="right">
+               <h1>{{ data.c.name }}</h1>
+               <h4>{{ data.c.address }}</h4>
             </div>
-            <div class="col-sm-8">
-                <h1>{{data.c.name}}</h1>
-                <h3>Apple street</h3>
-                <h4>url</h4>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel panel-default">
-        <div class="page-header">
-            <center><h1>History</h1></center>
-        </div>
-        <div class="panel-body">
+         </div>
+      </div>
+   </div>
+   <div class="col-sm-12">
+      <!-- <div class="panel panel-default"> -->
+         <div class="page-header">
+            <center>
+               <h1>History</h1>
+            </center>
+         </div>
+         <!-- <div class="panel-body"> -->
             <p>{{data.c.history}}</p>
-        </div>
-    </div>
-    <div class="col-sm-12">
-        <center><h1 class="page-header">Jobs<small class="pull-right">
-            <em>{{ data.jobs.length }} results</em>
-        </small></h1></center>
-        <div class="row">
-            <div class="col-xs-12 col-sm-4" ng-repeat="job in data.jobs">
-                <div class="thumbnail">
-                    <img style="height: 180px" src=" {{job.logo}}" alt="...">
-                    <div class="caption">
-                        <h4>{{job.jb_position}}</h4>
-                        <div class="row catsal">
-                            <small>
-                                <p class="col-sm-8"><em>{{job.catergory}}</em></p>
-                                <p class="col-sm-4"><em>${{job.pay_rt}}/{{job.sal}}</em></p>
-                            </small>
+            <p ng-if="!data.c.history">Business History Not Available</p>
+         <!-- </div> -->
+      <!-- </div> -->
+   </div>
+   <div class="col-sm-12">
+      <!-- <div class="panel panel-default"> -->
+         <!-- <div class="panel-body"> -->
+            <center>
+               <h1 class="page-header">Jobs<small class="pull-right">
+                  <em>{{ data.jobs.length }} results</em>
+                  </small>
+               </h1>
+            </center>
+            <div class="row">
+                <div class="col-sm-6" ng-repeat="job in data.jobs">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-3" style="border-right: solid #e5e4e2 1px">
+                                <div class="profile_pic">
+                                   <img src="{{job.logo}}" style="height: 50px; width: 50px; margin-top: -3px;" alt="..." class="img-circle profile_img">
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>{{job.position}} - {{job.company.name}}</p>
+                                <p>{{job.pay_rt}} per {{job.sal}}</p>
+                            </div>
                         </div>
-                        <br>
-                        <small><p class="desc_teaser">{{job.jb_desc_teaser}}</p></small>
-                        <div class='row'>
-                            <div class="col-sm-3">
-                                <a href="/Job/Details/{{job._id}}" class="fa fa-ellipsis-h btn btn-lg btn-primary" role="button"></a>
-                            </div>
-                            <form novalidate ng-submit="editJob()" class="col-sm-3">
-                                <input type="hidden" ng-model="job_id" value=>
-                                <button type="submit" class="btn btn-lg btn-success fa fa-pencil"></button>
-                            </form>
-                            <!-- <form novalidate ng-submit="removeJob()" class="col-sm-3"> -->
-                                <!-- <input type="hidden" ng-model="job_id" value="{{job._id}}"> -->
-                                <button ng-click="removeJob(job._id)" class="btn btn-lg btn-danger fa fa-trash"></button>
-                            <!-- </form> -->
-                            <div class="col-sm-3">
-                                <p class="pull-right"><em>{{job.view_count}} views</em></p>
-                            </div>
+                        <div class="panel-footer">
+                            <a href="/Job/Details/{{job._id}}" class="btn btn-default fa fa-ellipsis-h"></a>
+                            <a ng-click="removeJob()" class="btn btn-danger fa fa-trash pull-right"></a>
                         </div>
                     </div>
                 </div>
+               <div class="col-sm-12">
+                   <div class="panel panel-default">
+                       <div class="panel-body">
+                           <h3 class="pull-left">Want to post a new job?</h3>
+                           <a href="/Job/Add/{{data.c._id}}" class="pull-right btn btn-lg btn-primary fa fa-plus"></a>
+                       </div>
+                   </div>
+               </div>
             </div>
-        </div>
-            <div class="page-header"><h3 class="pull-left">Want to post a new job?</h3> <a href="/Job/Add/{{data.c._id}}" class="pull-right btn btn-lg btn-primary fa fa-plus"></a></div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>
 </body>
 </html>

@@ -33,10 +33,7 @@
                </div>
             </div> -->
          </div>
-         <div class="col-md-9 col-sm-9 col-xs-12">
-            <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder">
-
-            </div>
+         <div class="col-xs-12">
             <div style="width: 100%;">
                <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;">
                    <br>
@@ -78,8 +75,9 @@
                                    </div>
                                </div>
                                <div class="panel-footer">
-                                   <a href="/Job/Add/{{company._id}}" class="btn btn-default fa fa-plus"></a>
                                    <a href="/Business/Details/{{company._id}}" class="btn btn-default fa fa-ellipsis-h"></a>
+                                   <a href="/Job/Add/{{company._id}}" class="btn btn-default fa fa-plus"></a>
+                                   <a href="" class="btn btn-danger fa fa-trash pull-right"></a>
                                </div>
                            </div>
                        </div>
@@ -95,11 +93,13 @@
                                        </div>
                                    </div>
                                    <div class="col-sm-9">
-                                       <p>{{job.jb_position}} - {{job.company.name}}</p>
+                                       <p>{{job.position}} - {{job.company.name}}</p>
+                                       <p>{{job.pay_rt}} per {{job.sal}}</p>
                                    </div>
                                </div>
                                <div class="panel-footer">
                                    <a href="/Job/Details/{{job._id}}" class="btn btn-default fa fa-ellipsis-h"></a>
+                                   <a ng-click="removeJob()" class="btn btn-danger fa fa-trash pull-right"></a>
                                </div>
                            </div>
                        </div>
