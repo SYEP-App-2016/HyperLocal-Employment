@@ -8,7 +8,7 @@ var express = require('express'),
 
 router.get('/Profile', utility.isLoggedIn, function(req, res){
     console.log(req.user);
-    res.render('Member/index', {user: req.user});
+    res.render('Member/index.ejs', {user: req.user});
 });
 
 router.get('/Profile.json', function(req, res){
@@ -45,7 +45,7 @@ router.get('/Profile.json', function(req, res){
 });
 
 router.get('/newUser', function(req, res){
-    res.render('Member/newUser');
+    res.render('Member/newUser.ejs');
 })
 
 router.post('/newUser', function(req, res){

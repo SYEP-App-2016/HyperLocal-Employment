@@ -10,12 +10,12 @@ var express = require('express'),
 
 // router.get('/', util.isLoggedIn, function(req, res){
 router.get('/', function(req, res){
-    res.render('Admin/index', { user: req.user, title: "Administration Manager" });
+    res.render('Admin/index.ejs', { user: req.user, title: "Administration Manager" });
 });
 
 router.get('/Members', function(req, res){
     User.find({}, function(err, user){
-        res.render('Admin/member', { title: "Manager Members", user: user });
+        res.render('Admin/member.ejs', { title: "Manager Members", user: user });
     });
 });
 

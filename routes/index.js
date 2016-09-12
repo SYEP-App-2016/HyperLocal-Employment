@@ -7,7 +7,7 @@ router.get('/', function(req, res){
 });
 
 router.get('/Err', function(req, res){
-    res.render('err');
+    res.render('err,ejs');
 })
 
 module.exports = router;

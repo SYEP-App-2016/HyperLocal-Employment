@@ -8,7 +8,7 @@ var express = require('express'),
 //Details - Get
 //Renders Jobs Details Page
 router.get('/Details/:id', function(req, res){
-    res.render('Job/details', {user: req.user}); //Tells server to render details page in Job folder
+    res.render('Job/details.ejs', {user: req.user}); //Tells server to render details page in Job folder
 });
 //Sends Json data on job details to server
 router.get('/Details/:id/data.json', function(req, res){
@@ -34,7 +34,7 @@ router.get('/Details/:id/data.json', function(req, res){
 
 //Renders Job's index page
 router.get('/', function(req, res){
-    res.render('Job/index', {user: req.user});
+    res.render('Job/index.ejs', {user: req.user});
 });
 
 //Sends Json data to Index page, contains listing of jobs
@@ -66,7 +66,7 @@ router.get('/jobs.json', function(req,res){
 //Add - Get
 //Renders Job add page
 router.get('/Add/:id', function(req, res){
-    res.render('Job/add', {user: req.user});
+    res.render('Job/add.ejs', {user: req.user});
 });
 
 //Add - Post
