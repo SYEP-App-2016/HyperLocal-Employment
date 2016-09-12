@@ -45,6 +45,7 @@ router.get('/jobs.json', function(req,res){
             collection[moment(jobs[jobs.length - 1].date_posted).format('LL')] = []; //Sets the first item in collection to the oldest date
             for(var i = (Object.keys(collection).length - 1); i >= 0; i--) { //Loops through Collections
 
+
                 var cur = Object.keys(collection)[i]; //Current date in loop is stored in cur
                   for(var x = (jobs.length - 1); x >= 0; x--) { //Loops through jobs
                       if(moment(jobs[x].date_posted).format('LL') == cur){ //Checks to see if the current job's date matches the current date, if yes, job is pushed into collection

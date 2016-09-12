@@ -26,7 +26,7 @@ app.engine('html', require('ejs').renderFile);
 
 app.use(express.static(__dirname + '/public'));
 
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(bodyParser.urlencoded({'extended': 'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({type: 'application/vdn.api+json'}));
