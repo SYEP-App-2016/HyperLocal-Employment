@@ -19,7 +19,7 @@ router.get('/Details/:id/data.json', function(req, res){
 
 //Renders to Details page
 router.get('/Details/:id/', function(req, res){
-    res.render('Business/details,ejs', {user: req.user}); //Tells server to render the Details page in the Business folder
+    res.render('Business/details.ejs', {user: req.user}); //Tells server to render the Details page in the Business folder
 });
 
 //Add - Get

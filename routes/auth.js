@@ -7,7 +7,7 @@ var passport = require('passport'),
     utility = require('../utility');
 
 router.get('/Signup', utility.isNotLoggedIn, function(req, res){
-    res.render('Auth/Signup.ejs', {message: req.flash('signupMessage'), user: req.user});
+    res.render('Auth/signup.ejs', {message: req.flash('signupMessage'), user: req.user});
 });
 
 router.post('/Signup', passport.authenticate('local-signup', {
@@ -17,7 +17,7 @@ router.post('/Signup', passport.authenticate('local-signup', {
 }));
 
 router.get('/Steps', function(req, res){
-    res.render('member/newUser.ejs', {user: req.user});
+    res.render('Member/newUser.ejs', {user: req.user});
 });
 
 router.post('/newUser', function(req, res){
@@ -35,7 +35,7 @@ router.post('/newUser', function(req, res){
 });
 
 router.get('/Login', utility.isNotLoggedIn, function(req, res){
-    res.render('auth/login.ejs', {message: req.flash('loginMessage'), user: req.user});
+    res.render('Auth/login.ejs', {message: req.flash('loginMessage'), user: req.user});
 });
 
 router.post('/Login', passport.authenticate('local-login', {
